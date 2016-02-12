@@ -1,2 +1,4 @@
-# mysql--binlog-client
-simple mysql binlog client
+# mysql-binlog-client
+
+A simple mysql binlog client.
+
