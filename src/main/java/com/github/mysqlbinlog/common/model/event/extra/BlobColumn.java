@@ -7,7 +7,8 @@ public class BlobColumn extends Column {
 	private static final long serialVersionUID = -3913839314388589671L;
 	private final byte[] value;
 
-	private BlobColumn(byte[] value) {
+	public BlobColumn(int type, byte[] value) {
+		super(type);
 		this.value = value;
 	}
 

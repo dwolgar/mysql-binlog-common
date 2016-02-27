@@ -7,7 +7,8 @@ public final class LongLongColumn extends Column {
 
 	private final long value;
 
-	private LongLongColumn(long value) {
+	private LongLongColumn(int type, long value) {
+		super(type);
 		this.value = value;
 	}
 

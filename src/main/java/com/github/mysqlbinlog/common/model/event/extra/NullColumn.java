@@ -2,14 +2,15 @@ package com.github.mysqlbinlog.common.model.event.extra;
 
 public final class NullColumn extends Column {
 	private static final long serialVersionUID = -3548523546268990115L;
-	private final int type;
+	private final int columnType;
 
-	private NullColumn(int type) {
-		this.type = type;
+	private NullColumn(int type, int columnType) {
+		super(type);
+		this.columnType = columnType;
 	}
 
-	public int getType() {
-		return type;
+	public int getColumnType() {
+		return this.columnType;
 	}
 
 	@Override
@@ -19,7 +20,7 @@ public final class NullColumn extends Column {
 
 	@Override
 	public String toString() {
-		return "NullColumn [type=" + type + "]";
+		return "NullColumn [type=" + this.columnType + "]";
 	}
 
 }

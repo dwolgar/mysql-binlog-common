@@ -4,7 +4,8 @@ public final class StringColumn extends Column {
 	private static final long serialVersionUID = 749371729285531226L;
 	private final String value;
 
-	private StringColumn(String value) {
+	public StringColumn(int type, String value) {
+		super(type);
 		this.value = value;
 	}
 

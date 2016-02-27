@@ -4,7 +4,8 @@ public final class FloatColumn extends Column {
 	private static final long serialVersionUID = -1484429414871149683L;
 	private final float value;
 
-	private FloatColumn(float value) {
+	private FloatColumn(int type, float value) {
+		super(type);
 		this.value = value;
 	}
 

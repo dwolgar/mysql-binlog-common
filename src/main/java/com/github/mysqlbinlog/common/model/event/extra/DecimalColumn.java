@@ -9,7 +9,8 @@ public final class DecimalColumn extends Column {
 	private final int precision;
 	private final int scale;
 
-	private DecimalColumn(BigDecimal value, int precision, int scale) {
+	public DecimalColumn(int type, BigDecimal value, int precision, int scale) {
+		super(type);
 		this.value = value;
 		this.scale = scale;
 		this.precision = precision;
