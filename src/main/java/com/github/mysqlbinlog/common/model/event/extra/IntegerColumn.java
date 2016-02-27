@@ -7,7 +7,7 @@ public final class IntegerColumn extends Column {
 
 	private final int value;
 
-	private IntegerColumn(int type, int value) {
+	public IntegerColumn(int type, int value) {
 		super(type);
 		this.value = value;
 	}

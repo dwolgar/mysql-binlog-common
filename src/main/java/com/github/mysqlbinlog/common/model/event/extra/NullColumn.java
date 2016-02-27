@@ -4,7 +4,7 @@ public final class NullColumn extends Column {
 	private static final long serialVersionUID = -3548523546268990115L;
 	private final int columnType;
 
-	private NullColumn(int type, int columnType) {
+	public NullColumn(int type, int columnType) {
 		super(type);
 		this.columnType = columnType;
 	}
