@@ -1,4 +1,4 @@
-# mysql-binlog-client
+# mysql-binlog-common
 
-A simple mysql binlog client.
+A set of mysql binlog related classes.
 

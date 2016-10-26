@@ -1,17 +1,55 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>mysql-binlog-client</groupId>
-  <artifactId>mysql-binlog-client</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  
-  	<name>mysql-binlog-client</name>
-  	<description>MySQL Binary Log Client</description>
-  	
-  	<build>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.github.mysql</groupId>
+	<artifactId>mysql-binlog-common</artifactId>
+	<version>0.0.1</version>
+
+	<name>mysql-binlog-common</name>
+	<description>MySQL Binary Log Common</description>
+
+	<developers>
+        <developer>
+            <id>dwolgar</id>
+            <email>dwolgar@yahoo.com</email>
+            <name>Dmitri Izofatov</name>
+        </developer>
+    </developers>
+
+	<dependencies>
+		<!-- Unit Tests -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.5</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.16</version>
+			<scope>compile</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId> 
-				<artifactId>maven-compiler-plugin</artifactId> 
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
 					<source>1.6</source>
 					<target>1.6</target>
@@ -28,6 +66,25 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <configuration>
+                    <failsOnError>true</failsOnError>
+                    <configLocation>additions/codequality/checkstyle.xml</configLocation>
+                    <headerLocation>additions/codequality/license.header.txt</headerLocation>
+                    <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                    <consoleOutput>true</consoleOutput>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>checkstyle</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 		</plugins>
 	</build>
 </project>
