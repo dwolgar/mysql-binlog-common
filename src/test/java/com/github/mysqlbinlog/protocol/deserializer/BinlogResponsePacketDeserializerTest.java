@@ -41,7 +41,7 @@ import com.github.mysql.protocol.model.ResultSetRowResponsePacket;
 @RunWith(JUnit4.class)
 public class BinlogResponsePacketDeserializerTest {
     @Test
-    public void MysqlGreetingResponsePacketUnmarshallerTest() throws Exception {
+    public void MysqlGreetingResponsePacketDeserializerTest() throws Exception {
         String hexPacket = "0A352E362E33302D307562756E7475302E31342E30342E312D6C6F67002900000037374D5F7347487300FFF70802007F8015000000000000000000002A75313144425D2E6C554846006D7973716C5F6E61746976655F70617373776F726400";
         
         GreetingResponsePacketDeserializer unmarshaller = new GreetingResponsePacketDeserializer();
@@ -51,7 +51,7 @@ public class BinlogResponsePacketDeserializerTest {
     }
     
     @Test
-    public void MysqlOKResponsePacketUnmarshallerTest() throws Exception {
+    public void MysqlOKResponsePacketDeserializerTest() throws Exception {
         String hexPacket = "000002000000";
         
         OKResponsePacketDeserializer unmarshaller = new OKResponsePacketDeserializer();
@@ -62,7 +62,7 @@ public class BinlogResponsePacketDeserializerTest {
 
 
     @Test
-    public void MysqlResultSetFieldResponsePacketUnmarshallerTest() throws Exception {
+    public void MysqlResultSetFieldResponsePacketDeserializerTest() throws Exception {
         String[] hexPacket = {
                 "0364656612696E666F726D6174696F6E5F736368656D61095641524941424C4553095641524941424C45530D5661726961626C655F6E616D650D5641524941424C455F4E414D450C080040000000FD0100000000",
                 "0364656612696E666F726D6174696F6E5F736368656D61095641524941424C4553095641524941424C45530556616C75650E5641524941424C455F56414C55450C080000040000FD0000000000"
@@ -77,7 +77,7 @@ public class BinlogResponsePacketDeserializerTest {
     }
     
     @Test
-    public void MysqlResultSetRowResponsePacketUnmarshallerTest() throws Exception {
+    public void MysqlResultSetRowResponsePacketDeserializerTest() throws Exception {
         String[] hexPacket = {
                 "186175746F5F696E6372656D656E745F696E6372656D656E740131",
                 "156175746F5F696E6372656D656E745F6F66667365740131",
@@ -94,7 +94,7 @@ public class BinlogResponsePacketDeserializerTest {
     }
 
     @Test
-    public void MysqlEOFResponsePacketUnmarshallerTest() throws Exception {
+    public void MysqlEOFResponsePacketDeserializerTest() throws Exception {
         String hexPacket = "00002200";
         
         EOFResponsePacketDeserializer unmarshaller = new EOFResponsePacketDeserializer();
@@ -104,7 +104,7 @@ public class BinlogResponsePacketDeserializerTest {
     }
 
     @Test
-    public void MysqlResultSetHeaderResponsePacketUnmarshallerTest() throws Exception {
+    public void MysqlResultSetHeaderResponsePacketDeserializerTest() throws Exception {
         String hexPacket = "02";
         
         ResultSetHeaderResponsePacketDeserializer unmarshaller = new ResultSetHeaderResponsePacketDeserializer();

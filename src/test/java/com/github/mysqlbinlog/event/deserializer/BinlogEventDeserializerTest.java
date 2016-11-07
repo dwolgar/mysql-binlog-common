@@ -62,7 +62,7 @@ public class BinlogEventDeserializerTest {
     }
     
     @Test
-    public void QueryEventUnmarshallerTest() {
+    public void QueryEventDeserializerTest() {
         SimpleBinlogDeserializerContextImpl binlogParserContext = new SimpleBinlogDeserializerContextImpl();
         binlogParserContext.setChecksum(new NoneMysqlChecksumImpl());
         
@@ -86,7 +86,7 @@ public class BinlogEventDeserializerTest {
     }
     
     @Test
-    public void XidEventUnmarshallerTest() {
+    public void XidEventDeserializerTest() {
         SimpleBinlogDeserializerContextImpl binlogParserContext = new SimpleBinlogDeserializerContextImpl();
         binlogParserContext.setChecksum(new NoneMysqlChecksumImpl());
 
@@ -100,7 +100,7 @@ public class BinlogEventDeserializerTest {
 
     
     @Test
-    public void StopEventUnmarshallerTest() {
+    public void StopEventDeserializerTest() {
         SimpleBinlogDeserializerContextImpl binlogParserContext = new SimpleBinlogDeserializerContextImpl();
         binlogParserContext.setChecksum(new NoneMysqlChecksumImpl());
 
@@ -113,7 +113,7 @@ public class BinlogEventDeserializerTest {
     }
     
     @Test
-    public void RotateEventUnmarshallerTest() {
+    public void RotateEventDeserializerTest() {
         SimpleBinlogDeserializerContextImpl binlogParserContext = new SimpleBinlogDeserializerContextImpl();
         binlogParserContext.setChecksum(new NoneMysqlChecksumImpl());
 
@@ -126,7 +126,7 @@ public class BinlogEventDeserializerTest {
     }
     
     @Test
-    public void FormatDescriptionEventUnmarshallerTest() {
+    public void FormatDescriptionEventDeserializerTest() {
         SimpleBinlogDeserializerContextImpl binlogParserContext = new SimpleBinlogDeserializerContextImpl();
         binlogParserContext.setChecksum(new NoneMysqlChecksumImpl());
 
@@ -141,7 +141,7 @@ public class BinlogEventDeserializerTest {
 
     
     @Test
-    public void UpdateRowsEventV2UnmarshallerTest() {
+    public void UpdateRowsEventV2DeserializerTest() {
         SimpleBinlogDeserializerContextImpl binlogParserContext = new SimpleBinlogDeserializerContextImpl();
         binlogParserContext.setChecksum(new NoneMysqlChecksumImpl());
 
@@ -158,7 +158,7 @@ public class BinlogEventDeserializerTest {
     }
     
     @Test
-    public void WriteRowsEventV2UnmarshallerTest() {
+    public void WriteRowsEventV2DeserializerTest() {
         SimpleBinlogDeserializerContextImpl binlogParserContext = new SimpleBinlogDeserializerContextImpl();
         binlogParserContext.setChecksum(new NoneMysqlChecksumImpl());
 
@@ -185,7 +185,7 @@ public class BinlogEventDeserializerTest {
     }
     
     @Test
-    public void DeleteRowsEventV2UnmarshallerTest() {
+    public void DeleteRowsEventV2DeserializerTest() {
         SimpleBinlogDeserializerContextImpl binlogParserContext = new SimpleBinlogDeserializerContextImpl();
         binlogParserContext.setChecksum(new NoneMysqlChecksumImpl());
 
@@ -204,23 +204,23 @@ public class BinlogEventDeserializerTest {
 
 
     @Test
-    public void UserVarEventUnmarshallerTest() {
+    public void UserVarEventDeserializerTest() {
         
     }
     @Test
-    public void RandEventUnmarshallerTest() {
+    public void RandEventDeserializerTest() {
         
     }
     @Test
-    public void IntVarEventUnmarshallerTest() {
+    public void IntVarEventDeserializerTest() {
         
     }
     @Test
-    public void IncidentEventUnmarshallerTest() {
+    public void IncidentEventDeserializerTest() {
         
     }
     @Test
-    public void GtidEventUnmarshallerTest() {
+    public void GtidEventDeserializerTest() {
         
     }
 }
