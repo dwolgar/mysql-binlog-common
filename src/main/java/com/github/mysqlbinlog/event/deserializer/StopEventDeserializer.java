@@ -24,7 +24,7 @@ import com.github.mysqlbinlog.model.event.StopEvent;
 
 public class StopEventDeserializer implements BinlogEventDeserializer<StopEvent> {
 
-    public BinlogEvent unmarshal(StopEvent event, MysqlBinlogByteArrayInputStream is, BinlogDeserializerContext context) throws IOException {
+    public BinlogEvent deserialize(StopEvent event, MysqlBinlogByteArrayInputStream is, BinlogDeserializerContext context) throws IOException {
         return event;
     }
 

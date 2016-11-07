@@ -25,7 +25,7 @@ import com.github.mysqlbinlog.model.event.IntvarEvent;
 
 public class IntvarEventDeserializer implements BinlogEventDeserializer<IntvarEvent> {
 
-    public BinlogEvent unmarshal(IntvarEvent event, MysqlBinlogByteArrayInputStream is, BinlogDeserializerContext context) throws IOException {
+    public BinlogEvent deserialize(IntvarEvent event, MysqlBinlogByteArrayInputStream is, BinlogDeserializerContext context) throws IOException {
         
         event.setType(is.readInt(1, true));
         event.setValue(BigInteger.valueOf(is.readLong(8, true)));

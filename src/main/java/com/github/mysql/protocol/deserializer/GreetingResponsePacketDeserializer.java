@@ -24,7 +24,7 @@ import com.github.mysql.protocol.model.ResponsePacket;
 public class GreetingResponsePacketDeserializer implements ResponsePacketDeserializer {
 
     @Override
-    public ResponsePacket unmarshal(MysqlBinlogByteArrayInputStream is) {
+    public ResponsePacket deserialize(MysqlBinlogByteArrayInputStream is) {
         try {
             GreetingResponsePacket packet = new GreetingResponsePacket();
 

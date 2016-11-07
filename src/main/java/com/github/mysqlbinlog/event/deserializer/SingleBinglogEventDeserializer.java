@@ -19,5 +19,5 @@ package com.github.mysqlbinlog.event.deserializer;
 import com.github.mysqlbinlog.model.event.BinlogEvent;
 
 public interface SingleBinglogEventDeserializer {
-    public BinlogEvent parse(byte[] rawData, BinlogDeserializerContext context);
+    public BinlogEvent deserialize(byte[] rawData, BinlogDeserializerContext context);
 }

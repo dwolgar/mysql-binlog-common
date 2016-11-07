@@ -24,7 +24,7 @@ import com.github.mysqlbinlog.model.event.XidEvent;
 
 public class XidEventDeserializer implements BinlogEventDeserializer<XidEvent> {
 
-    public BinlogEvent unmarshal(XidEvent event, MysqlBinlogByteArrayInputStream is, BinlogDeserializerContext context) throws IOException {
+    public BinlogEvent deserialize(XidEvent event, MysqlBinlogByteArrayInputStream is, BinlogDeserializerContext context) throws IOException {
         
         event.setXid(is.readLong(8, true));
         return event;

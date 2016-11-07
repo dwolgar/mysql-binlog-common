@@ -24,7 +24,7 @@ import com.github.mysqlbinlog.model.event.IncidentEvent;
 
 public class IncidentEventDeserializer implements BinlogEventDeserializer<IncidentEvent> {
 
-    public BinlogEvent unmarshal(IncidentEvent event, MysqlBinlogByteArrayInputStream is, BinlogDeserializerContext context) throws IOException {
+    public BinlogEvent deserialize(IncidentEvent event, MysqlBinlogByteArrayInputStream is, BinlogDeserializerContext context) throws IOException {
         
         event.setIncidentNumber(is.readInt(1, true));
         event.setMessageLength(is.readInt(1, true));

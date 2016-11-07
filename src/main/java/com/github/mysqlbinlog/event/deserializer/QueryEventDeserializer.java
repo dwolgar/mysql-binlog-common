@@ -44,7 +44,7 @@ import com.github.mysqlbinlog.model.variable.StatusVariable;
 
 public class QueryEventDeserializer implements BinlogEventDeserializer<QueryEvent> {
 
-    public BinlogEvent unmarshal(QueryEvent event, MysqlBinlogByteArrayInputStream is, BinlogDeserializerContext context) throws IOException {
+    public BinlogEvent deserialize(QueryEvent event, MysqlBinlogByteArrayInputStream is, BinlogDeserializerContext context) throws IOException {
         
         event.setThreadId(is.readLong(4, true));
         event.setElapsedTime(is.readLong(4, true));

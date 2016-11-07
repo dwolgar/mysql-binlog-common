@@ -20,5 +20,5 @@ import com.github.mysqlbinlog.model.event.BinlogEventHeader;
 
 
 public interface BinlogEventDeserializerFactory {
-    public BinlogEventDeserializer<?> getBinlogEventUnmarshaller(BinlogEventHeader eventHeader);
+    public BinlogEventDeserializer<?> getBinlogEventDeserializer(BinlogEventHeader eventHeader);
 }

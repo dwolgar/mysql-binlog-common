@@ -46,7 +46,7 @@ public class BinlogResponsePacketDeserializerTest {
         
         GreetingResponsePacketDeserializer unmarshaller = new GreetingResponsePacketDeserializer();
 
-        GreetingResponsePacket packet = (GreetingResponsePacket) unmarshaller.unmarshal(new MysqlBinlogByteArrayInputStream(new ByteArrayInputStream(DatatypeConverter.parseHexBinary(hexPacket))));
+        GreetingResponsePacket packet = (GreetingResponsePacket) unmarshaller.deserialize(new MysqlBinlogByteArrayInputStream(new ByteArrayInputStream(DatatypeConverter.parseHexBinary(hexPacket))));
         System.out.println("MysqlGreetingResponsePacket [" + packet + "]");
     }
     
@@ -56,7 +56,7 @@ public class BinlogResponsePacketDeserializerTest {
         
         OKResponsePacketDeserializer unmarshaller = new OKResponsePacketDeserializer();
 
-        OKResponsePacket packet = (OKResponsePacket) unmarshaller.unmarshal(new MysqlBinlogByteArrayInputStream(new ByteArrayInputStream(DatatypeConverter.parseHexBinary(hexPacket))));
+        OKResponsePacket packet = (OKResponsePacket) unmarshaller.deserialize(new MysqlBinlogByteArrayInputStream(new ByteArrayInputStream(DatatypeConverter.parseHexBinary(hexPacket))));
         System.out.println("MysqlOKResponsePacket [" + packet + "]");
     }
 
@@ -71,7 +71,7 @@ public class BinlogResponsePacketDeserializerTest {
         ResultSetFieldResponsePacketDeserializer unmarshaller = new ResultSetFieldResponsePacketDeserializer();
 
         for (int i = 0; i<hexPacket.length; i++) {
-            ResultSetFieldResponsePacket packet = (ResultSetFieldResponsePacket) unmarshaller.unmarshal(new MysqlBinlogByteArrayInputStream(new ByteArrayInputStream(DatatypeConverter.parseHexBinary(hexPacket[i]))));
+            ResultSetFieldResponsePacket packet = (ResultSetFieldResponsePacket) unmarshaller.deserialize(new MysqlBinlogByteArrayInputStream(new ByteArrayInputStream(DatatypeConverter.parseHexBinary(hexPacket[i]))));
             System.out.println("MysqlResultSetFieldResponsePacket [" + packet + "]");
         }
     }
@@ -88,7 +88,7 @@ public class BinlogResponsePacketDeserializerTest {
         ResultSetRowResponsePacketDeserializer unmarshaller = new ResultSetRowResponsePacketDeserializer();
 
         for (int i = 0; i<hexPacket.length; i++) {
-            ResultSetRowResponsePacket packet = (ResultSetRowResponsePacket) unmarshaller.unmarshal(new MysqlBinlogByteArrayInputStream(new ByteArrayInputStream(DatatypeConverter.parseHexBinary(hexPacket[i]))));
+            ResultSetRowResponsePacket packet = (ResultSetRowResponsePacket) unmarshaller.deserialize(new MysqlBinlogByteArrayInputStream(new ByteArrayInputStream(DatatypeConverter.parseHexBinary(hexPacket[i]))));
             System.out.println("MysqlResultSetRowResponsePacket [" + packet + "]");
         }
     }
@@ -99,7 +99,7 @@ public class BinlogResponsePacketDeserializerTest {
         
         EOFResponsePacketDeserializer unmarshaller = new EOFResponsePacketDeserializer();
 
-        EOFResponsePacket packet = (EOFResponsePacket) unmarshaller.unmarshal(new MysqlBinlogByteArrayInputStream(new ByteArrayInputStream(DatatypeConverter.parseHexBinary(hexPacket))));
+        EOFResponsePacket packet = (EOFResponsePacket) unmarshaller.deserialize(new MysqlBinlogByteArrayInputStream(new ByteArrayInputStream(DatatypeConverter.parseHexBinary(hexPacket))));
         System.out.println("MysqlEOFResponsePacket [" + packet + "]");
     }
 
@@ -109,7 +109,7 @@ public class BinlogResponsePacketDeserializerTest {
         
         ResultSetHeaderResponsePacketDeserializer unmarshaller = new ResultSetHeaderResponsePacketDeserializer();
 
-        ResultSetHeaderResponsePacket packet = (ResultSetHeaderResponsePacket) unmarshaller.unmarshal(new MysqlBinlogByteArrayInputStream(new ByteArrayInputStream(DatatypeConverter.parseHexBinary(hexPacket))));
+        ResultSetHeaderResponsePacket packet = (ResultSetHeaderResponsePacket) unmarshaller.deserialize(new MysqlBinlogByteArrayInputStream(new ByteArrayInputStream(DatatypeConverter.parseHexBinary(hexPacket))));
         System.out.println("MysqlResultSetHeaderResponsePacket [" + packet + "]");
     }
 

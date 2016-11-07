@@ -45,7 +45,7 @@ import com.github.mysqlbinlog.model.event.extra.StringColumn;
 
 public abstract class AbstractRowEventDeserializer<E extends BinlogEvent> implements BinlogEventDeserializer<E> {
 
-    public abstract BinlogEvent unmarshal(E event, MysqlBinlogByteArrayInputStream is, BinlogDeserializerContext context) throws IOException;
+    public abstract BinlogEvent deserialize(E event, MysqlBinlogByteArrayInputStream is, BinlogDeserializerContext context) throws IOException;
 
     protected Row parseRow(MysqlBinlogByteArrayInputStream is, TableMapEvent tme, BitSet usedColumns) throws IOException {
         int unusedColumnCount = 0;

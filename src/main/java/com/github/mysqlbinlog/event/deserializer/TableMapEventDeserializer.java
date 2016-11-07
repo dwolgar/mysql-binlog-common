@@ -28,7 +28,7 @@ import com.github.mysqlbinlog.model.event.extra.Metadata;
 
 public class TableMapEventDeserializer implements BinlogEventDeserializer<TableMapEvent> {
 
-    public BinlogEvent unmarshal(TableMapEvent event, MysqlBinlogByteArrayInputStream is, BinlogDeserializerContext context) throws IOException {
+    public BinlogEvent deserialize(TableMapEvent event, MysqlBinlogByteArrayInputStream is, BinlogDeserializerContext context) throws IOException {
         
         event.setTableId(is.readLong(6, true));
         event.setReserved(is.readInt(2, true));

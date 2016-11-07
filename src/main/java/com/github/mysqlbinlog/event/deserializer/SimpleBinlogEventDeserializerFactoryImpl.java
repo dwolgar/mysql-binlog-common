@@ -25,13 +25,13 @@ import com.github.mysqlbinlog.model.event.BinlogEventHeader;
 @SuppressWarnings({ "rawtypes", "serial" })
 public class SimpleBinlogEventDeserializerFactoryImpl implements BinlogEventDeserializerFactory {
     
-    private Map<Integer, BinlogEventDeserializer> unmarshallers;
+    private Map<Integer, BinlogEventDeserializer> deserializers;
 
     public SimpleBinlogEventDeserializerFactoryImpl() {
     }
     
-    private void createDefaultUnmarshallers() {
-        unmarshallers = new HashMap<Integer, BinlogEventDeserializer>() {{
+    private void createDefaultDeserializers() {
+        deserializers = new HashMap<Integer, BinlogEventDeserializer>() {{
             put(MysqlConstants.QUERY_EVENT, new QueryEventDeserializer());
             put(MysqlConstants.ROTATE_EVENT, new RotateEventDeserializer());
             put(MysqlConstants.INTVAR_EVENT, new IntvarEventDeserializer());
@@ -53,11 +53,11 @@ public class SimpleBinlogEventDeserializerFactoryImpl implements BinlogEventDese
     }
 
     @Override
-    public BinlogEventDeserializer<?> getBinlogEventUnmarshaller(BinlogEventHeader eventHeader) {
-        if (this.unmarshallers == null) {
-            createDefaultUnmarshallers();
+    public BinlogEventDeserializer<?> getBinlogEventDeserializer(BinlogEventHeader eventHeader) {
+        if (this.deserializers == null) {
+            createDefaultDeserializers();
         }
-        return unmarshallers.get(eventHeader.getEventType());
+        return deserializers.get(eventHeader.getEventType());
     }
 
 }

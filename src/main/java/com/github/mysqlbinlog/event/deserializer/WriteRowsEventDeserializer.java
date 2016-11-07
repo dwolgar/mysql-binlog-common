@@ -40,7 +40,7 @@ public class WriteRowsEventDeserializer extends AbstractRowEventDeserializer<Wri
 
 
     @Override
-    public BinlogEvent unmarshal(WriteRowsEvent event, MysqlBinlogByteArrayInputStream is, BinlogDeserializerContext context) throws IOException {
+    public BinlogEvent deserialize(WriteRowsEvent event, MysqlBinlogByteArrayInputStream is, BinlogDeserializerContext context) throws IOException {
         
         final long tableId = is.readLong(6, true);
         final TableMapEvent tme = context.getTableMapEvent(tableId);

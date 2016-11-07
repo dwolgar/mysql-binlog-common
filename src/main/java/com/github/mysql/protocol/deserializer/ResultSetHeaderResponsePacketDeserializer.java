@@ -24,7 +24,7 @@ import com.github.mysql.protocol.model.ResultSetHeaderResponsePacket;
 public class ResultSetHeaderResponsePacketDeserializer implements ResponsePacketDeserializer {
 
     @Override
-    public ResponsePacket unmarshal(MysqlBinlogByteArrayInputStream is) {
+    public ResponsePacket deserialize(MysqlBinlogByteArrayInputStream is) {
         try {
             ResultSetHeaderResponsePacket packet = new ResultSetHeaderResponsePacket();
 

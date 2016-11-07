@@ -24,7 +24,7 @@ import com.github.mysqlbinlog.model.event.BinlogEventHeader;
 
 public class SimpleBinlogEventHeaderDeserializerImpl implements BinlogEventHeaderDeserializer {
 
-    public BinlogEventHeader unmarshal(MysqlBinlogByteArrayInputStream is) throws IOException {
+    public BinlogEventHeader deserialize(MysqlBinlogByteArrayInputStream is) throws IOException {
         BinlogEventHeader header = new BinlogEventHeader();
         
         int OK = is.readInt(1, true);

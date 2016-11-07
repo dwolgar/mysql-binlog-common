@@ -24,7 +24,7 @@ import com.github.mysqlbinlog.model.event.FormatDescriptionEvent;
 
 public class FormatDescriptionEventDeserializer implements BinlogEventDeserializer<FormatDescriptionEvent> {
 
-    public BinlogEvent unmarshal(FormatDescriptionEvent event, MysqlBinlogByteArrayInputStream is, BinlogDeserializerContext context) throws IOException {
+    public BinlogEvent deserialize(FormatDescriptionEvent event, MysqlBinlogByteArrayInputStream is, BinlogDeserializerContext context) throws IOException {
         
         event.setBinlogVersion(is.readInt(2, true));
         event.setServerVersion(is.readString(50).trim());

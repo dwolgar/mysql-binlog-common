@@ -24,7 +24,7 @@ import com.github.mysqlbinlog.model.event.RandEvent;
 
 public class RandEventDeserializer implements BinlogEventDeserializer<RandEvent> {
 
-    public BinlogEvent unmarshal(RandEvent event, MysqlBinlogByteArrayInputStream is, BinlogDeserializerContext context) throws IOException {
+    public BinlogEvent deserialize(RandEvent event, MysqlBinlogByteArrayInputStream is, BinlogDeserializerContext context) throws IOException {
         
         event.setRandSeed1(is.readLong(8, true));
         event.setRandSeed2(is.readLong(8, true));

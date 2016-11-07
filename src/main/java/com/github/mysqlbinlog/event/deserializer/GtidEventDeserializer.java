@@ -24,7 +24,7 @@ import com.github.mysqlbinlog.model.event.GtidEvent;
 
 public class GtidEventDeserializer implements BinlogEventDeserializer<GtidEvent> {
 
-    public BinlogEvent unmarshal(GtidEvent event, MysqlBinlogByteArrayInputStream is, BinlogDeserializerContext context) throws IOException {
+    public BinlogEvent deserialize(GtidEvent event, MysqlBinlogByteArrayInputStream is, BinlogDeserializerContext context) throws IOException {
         
         byte[] flags = is.read(1);
         event.setFlags(flags[0]);

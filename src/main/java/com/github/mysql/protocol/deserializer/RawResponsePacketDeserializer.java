@@ -24,7 +24,7 @@ import com.github.mysql.protocol.model.ResponsePacket;
 public class RawResponsePacketDeserializer implements ResponsePacketDeserializer {
 
     @Override
-    public ResponsePacket unmarshal(MysqlBinlogByteArrayInputStream is) {
+    public ResponsePacket deserialize(MysqlBinlogByteArrayInputStream is) {
 
         try {
             RawMysqlPacket packet = new RawMysqlPacket();

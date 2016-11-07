@@ -40,7 +40,7 @@ public class DeleteRowsEventDeserializer extends AbstractRowEventDeserializer<De
     }
 
     @Override
-    public BinlogEvent unmarshal(DeleteRowsEvent event, MysqlBinlogByteArrayInputStream is, BinlogDeserializerContext context) throws IOException {
+    public BinlogEvent deserialize(DeleteRowsEvent event, MysqlBinlogByteArrayInputStream is, BinlogDeserializerContext context) throws IOException {
 
         final long tableId = is.readLong(6, true);
 

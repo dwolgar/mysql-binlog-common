@@ -23,7 +23,7 @@ import com.github.mysql.protocol.model.ResponsePacket;
 
 public class EOFResponsePacketDeserializer implements ResponsePacketDeserializer {
     @Override
-    public ResponsePacket unmarshal(MysqlBinlogByteArrayInputStream is) {
+    public ResponsePacket deserialize(MysqlBinlogByteArrayInputStream is) {
         try {
             EOFResponsePacket packet = new EOFResponsePacket();
 

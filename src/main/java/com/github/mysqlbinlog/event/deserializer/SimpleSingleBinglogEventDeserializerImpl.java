@@ -38,7 +38,7 @@ public class SimpleSingleBinglogEventDeserializerImpl implements SingleBinglogEv
     }
     
     @SuppressWarnings("unchecked")
-    public BinlogEvent parse(byte[] rawData, BinlogDeserializerContext context) {
+    public BinlogEvent deserialize(byte[] rawData, BinlogDeserializerContext context) {
         MysqlChecksum checksum = context.getChecksum();
         
         MysqlBinlogByteArrayInputStream is = new MysqlBinlogByteArrayInputStream(new ByteArrayInputStream(rawData, 0, rawData.length - checksum.getSize()));
@@ -47,20 +47,20 @@ public class SimpleSingleBinglogEventDeserializerImpl implements SingleBinglogEv
         BinlogEventHeader eventHeader = null;
         
         try {
-            eventHeader = binlogEventHeaderParser.unmarshal(is);
+            eventHeader = binlogEventHeaderParser.deserialize(is);
         }
         catch (Exception ex) {
             throw new RuntimeException(ex);
         }
         
-        BinlogEventDeserializer binlogEventParser = binlogEventUnmarshallerFactory.getBinlogEventUnmarshaller(eventHeader);
+        BinlogEventDeserializer binlogEventParser = binlogEventUnmarshallerFactory.getBinlogEventDeserializer(eventHeader);
         if (binlogEventParser == null) {
             throw new RuntimeException("Unknown event type [" + eventHeader.getEventType() + "]");
         }
         
         BinlogEvent event = binlogEventFactory.createBinlogEvent(eventHeader, rawData);
         try {
-            binlogEventParser.unmarshal(event, is, context);
+            binlogEventParser.deserialize(event, is, context);
             
         } catch (Exception ex) {
             throw new RuntimeException(ex);

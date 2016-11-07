@@ -22,4 +22,7 @@ public interface MysqlBinlogReader {
     public void open();
     public BinlogEvent readBinlogEvent();
     public void close();
+    
+    public void setEventPosition(EventPosition eventPosition);
+    public EventPosition getEventPosition();
 }

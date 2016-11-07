@@ -24,7 +24,7 @@ import com.github.mysqlbinlog.model.event.RotateEvent;
 
 public class RotateEventDeserializer implements BinlogEventDeserializer<RotateEvent> {
 
-    public BinlogEvent unmarshal(RotateEvent event, MysqlBinlogByteArrayInputStream is, BinlogDeserializerContext context) throws IOException {
+    public BinlogEvent deserialize(RotateEvent event, MysqlBinlogByteArrayInputStream is, BinlogDeserializerContext context) throws IOException {
         
         event.setBinlogPosition(is.readLong(8, true));
         event.setBinlogFileName(is.readString(is.available()));

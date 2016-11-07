@@ -20,5 +20,5 @@ import com.github.mysql.io.MysqlBinlogByteArrayInputStream;
 import com.github.mysql.protocol.model.ResponsePacket;
 
 public interface ResponsePacketDeserializer {
-    public ResponsePacket unmarshal(MysqlBinlogByteArrayInputStream is);
+    public ResponsePacket deserialize(MysqlBinlogByteArrayInputStream is);
 }

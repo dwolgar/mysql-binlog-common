@@ -24,7 +24,7 @@ import com.github.mysql.protocol.model.ResultSetFieldResponsePacket;
 public class ResultSetFieldResponsePacketDeserializer implements ResponsePacketDeserializer {
 
     @Override
-    public ResponsePacket unmarshal(MysqlBinlogByteArrayInputStream is) {
+    public ResponsePacket deserialize(MysqlBinlogByteArrayInputStream is) {
         try {
             ResultSetFieldResponsePacket packet = new ResultSetFieldResponsePacket();
 

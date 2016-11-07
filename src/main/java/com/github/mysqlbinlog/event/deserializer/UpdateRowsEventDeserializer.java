@@ -41,7 +41,7 @@ public class UpdateRowsEventDeserializer extends AbstractRowEventDeserializer<Up
 
 
     @Override
-    public BinlogEvent unmarshal(UpdateRowsEvent event, MysqlBinlogByteArrayInputStream is, BinlogDeserializerContext context) throws IOException {
+    public BinlogEvent deserialize(UpdateRowsEvent event, MysqlBinlogByteArrayInputStream is, BinlogDeserializerContext context) throws IOException {
 
         final long tableId = is.readLong(6, true);
         final TableMapEvent tme = context.getTableMapEvent(tableId);

@@ -32,7 +32,7 @@ import com.github.mysqlbinlog.model.variable.UserVariable;
 
 public class UserVarEventDeserializer implements BinlogEventDeserializer<UserVarEvent> {
 
-    public BinlogEvent unmarshal(UserVarEvent event, MysqlBinlogByteArrayInputStream is, BinlogDeserializerContext context) throws IOException {
+    public BinlogEvent deserialize(UserVarEvent event, MysqlBinlogByteArrayInputStream is, BinlogDeserializerContext context) throws IOException {
 
         int varNameLength = is.readInt(4, true);
         event.setVarName(is.readString(varNameLength));

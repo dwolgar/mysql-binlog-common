@@ -22,5 +22,5 @@ import com.github.mysql.io.MysqlBinlogByteArrayInputStream;
 import com.github.mysqlbinlog.model.event.BinlogEventHeader;
 
 public interface BinlogEventHeaderDeserializer {
-    public BinlogEventHeader unmarshal(MysqlBinlogByteArrayInputStream in) throws IOException;
+    public BinlogEventHeader deserialize(MysqlBinlogByteArrayInputStream in) throws IOException;
 }

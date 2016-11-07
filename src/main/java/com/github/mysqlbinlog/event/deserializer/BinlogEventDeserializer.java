@@ -22,5 +22,5 @@ import com.github.mysql.io.MysqlBinlogByteArrayInputStream;
 import com.github.mysqlbinlog.model.event.BinlogEvent;
 
 public interface BinlogEventDeserializer<E extends BinlogEvent> {
-    public BinlogEvent unmarshal(E event, MysqlBinlogByteArrayInputStream is, BinlogDeserializerContext context)  throws IOException;
+    public BinlogEvent deserialize(E event, MysqlBinlogByteArrayInputStream is, BinlogDeserializerContext context)  throws IOException;
 }
