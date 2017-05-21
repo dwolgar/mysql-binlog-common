@@ -23,8 +23,8 @@ public final class LongLongColumn extends Column {
 
     private final long value;
 
-    public LongLongColumn(int type, long value) {
-        super(type);
+    public LongLongColumn(String name, int type, long value) {
+        super(name, type);
         this.value = value;
     }
 
@@ -34,6 +34,7 @@ public final class LongLongColumn extends Column {
 
     @Override
     public String toString() {
-        return "LongLongColumn [value=" + value + "]";
+        return "LongLongColumn [value=" + value + ", getName()=" + getName()
+                + "]";
     }
 }

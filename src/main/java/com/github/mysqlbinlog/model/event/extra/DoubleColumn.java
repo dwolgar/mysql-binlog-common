@@ -20,8 +20,8 @@ public final class DoubleColumn extends Column {
     private static final long serialVersionUID = -3292030373367000473L;
     private final double value;
 
-    public DoubleColumn(int type, double value) {
-        super(type);
+    public DoubleColumn(String name, int type, double value) {
+        super(name, type);
         this.value = value;
     }
 
@@ -32,6 +32,7 @@ public final class DoubleColumn extends Column {
 
     @Override
     public String toString() {
-        return "DoubleColumn [value=" + value + "]";
+        return "DoubleColumn [value=" + value + ", getName()=" + getName()
+                + "]";
     }
 }

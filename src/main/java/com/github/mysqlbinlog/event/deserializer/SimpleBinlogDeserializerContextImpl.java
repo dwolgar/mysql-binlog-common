@@ -16,18 +16,23 @@
 
 package com.github.mysqlbinlog.event.deserializer;
 
+
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.github.mysqlbinlog.event.checksum.MysqlChecksum;
 import com.github.mysqlbinlog.model.event.TableMapEvent;
+import com.github.mysqlbinlog.model.event.extra.ColumnExtraData;
 
 public class SimpleBinlogDeserializerContextImpl implements BinlogDeserializerContext {
     private final Map<Long, TableMapEvent> tableMapEvents;
+    private final Map<String, List<ColumnExtraData>> columnExtraDataMap;
     private MysqlChecksum checksum;
     
     public SimpleBinlogDeserializerContextImpl() {
-        tableMapEvents = new HashMap<Long, TableMapEvent>();
+        tableMapEvents   = new HashMap<Long, TableMapEvent>();
+        columnExtraDataMap = new HashMap<String, List<ColumnExtraData>>();
     }
 
     @Override
@@ -47,5 +52,14 @@ public class SimpleBinlogDeserializerContextImpl implements BinlogDeserializerCo
 
     public void setChecksum(MysqlChecksum checksum) {
         this.checksum = checksum;
+    }
+
+    @Override
+    public List<ColumnExtraData> getColumnExtra(String databaseName, String tableName) {
+        return this.columnExtraDataMap.get(databaseName + "." + tableName);
+    }
+    
+    public void addColumnExtra(String databaseName, String tableName, List<ColumnExtraData> items) {
+        this.columnExtraDataMap.put(databaseName + "." + tableName, items);
     }
 }

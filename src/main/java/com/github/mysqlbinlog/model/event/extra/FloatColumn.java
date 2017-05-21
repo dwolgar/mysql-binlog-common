@@ -20,8 +20,8 @@ public final class FloatColumn extends Column {
     private static final long serialVersionUID = -1484429414871149683L;
     private final float value;
 
-    public FloatColumn(int type, float value) {
-        super(type);
+    public FloatColumn(String name, int type, float value) {
+        super(name, type);
         this.value = value;
     }
 
@@ -31,6 +31,6 @@ public final class FloatColumn extends Column {
 
     @Override
     public String toString() {
-        return "FloatColumn [value=" + value + "]";
+        return "FloatColumn [value=" + value + ", getName()=" + getName() + "]";
     }
 }

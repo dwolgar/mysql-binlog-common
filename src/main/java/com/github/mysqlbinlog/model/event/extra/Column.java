@@ -21,14 +21,21 @@ import java.io.Serializable;
 public abstract class Column implements Serializable {
     private static final long serialVersionUID = -3829478841053596810L;
     private final int type;
+    private final String name;
     
-    public Column(int type) {
+    public Column(String name, int type) {
         this.type = type;
+        this.name = name;
     }
     
     public int getType() {
         return type;
     }
+    
+    public String getName() {
+        return name;
+    }
+
     
     abstract public Object getValue();
 }

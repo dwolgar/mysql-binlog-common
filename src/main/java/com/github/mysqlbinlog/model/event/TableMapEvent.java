@@ -16,9 +16,12 @@
 
 package com.github.mysqlbinlog.model.event;
 
+
 import java.util.Arrays;
 import java.util.BitSet;
+import java.util.List;
 
+import com.github.mysqlbinlog.model.event.extra.ColumnExtraData;
 import com.github.mysqlbinlog.model.event.extra.Metadata;
 
 /*
@@ -42,7 +45,9 @@ public final class TableMapEvent extends BinlogEvent {
     private long columnMetadataCount;
     private Metadata columnMetadata;
     private BitSet columnNullabilities;
-
+    
+    private List<ColumnExtraData> columnExtra;
+    
     public TableMapEvent() {}
 
     public TableMapEvent(BinlogEventHeader header, byte[] rawData) {
@@ -112,6 +117,13 @@ public final class TableMapEvent extends BinlogEvent {
         this.columnNullabilities = columnNullabilities;
     }
 
+    public List<ColumnExtraData> getColumnExtra() {
+        return columnExtra;
+    }
+    public void setColumnExtra(List<ColumnExtraData> columnExtra) {
+        this.columnExtra = columnExtra;
+    }
+    
     @Override
     public String toString() {
         return "TableMapEvent [tableId=" + tableId + ", reserved=" + reserved
@@ -119,8 +131,8 @@ public final class TableMapEvent extends BinlogEvent {
                 + ", columnCount=" + columnCount + ", columnTypes="
                 + Arrays.toString(columnTypes) + ", columnMetadataCount="
                 + columnMetadataCount + ", columnMetadata=" + columnMetadata
-                + ", columnNullabilities=" + columnNullabilities + "]";
+                + ", columnNullabilities=" + columnNullabilities
+                + ", columnExtra=" + columnExtra + "]";
     }
-    
-    
+
 }

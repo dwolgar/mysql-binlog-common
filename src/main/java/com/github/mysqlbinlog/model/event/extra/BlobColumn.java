@@ -23,8 +23,8 @@ public class BlobColumn extends Column {
     private static final long serialVersionUID = -3913839314388589671L;
     private final byte[] value;
 
-    public BlobColumn(int type, byte[] value) {
-        super(type);
+    public BlobColumn(String name, int type, byte[] value) {
+        super(name, type);
         this.value = value;
     }
 
@@ -32,9 +32,11 @@ public class BlobColumn extends Column {
     public byte[] getValue() {
         return value;
     }
-
+    
     @Override
     public String toString() {
-        return "BlobColumn [value=" + Arrays.toString(value) + "]";
+        return "BlobColumn [value=" + Arrays.toString(value) + ", getName()="
+                + getName() + "]";
     }
+
 }

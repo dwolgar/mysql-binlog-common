@@ -25,8 +25,8 @@ public final class DecimalColumn extends Column {
     private final int precision;
     private final int scale;
 
-    public DecimalColumn(int type, BigDecimal value, int precision, int scale) {
-        super(type);
+    public DecimalColumn(String name, int type, BigDecimal value, int precision, int scale) {
+        super(name, type);
         this.value = value;
         this.scale = scale;
         this.precision = precision;
@@ -46,7 +46,8 @@ public final class DecimalColumn extends Column {
 
     @Override
     public String toString() {
-        return "DecimalColumn [value=" + value + ", precision=" + precision + ", scale=" + scale + "]";
+        return "DecimalColumn [value=" + value + ", precision=" + precision
+                + ", scale=" + scale + ", getName()=" + getName() + "]";
     }
 
 }

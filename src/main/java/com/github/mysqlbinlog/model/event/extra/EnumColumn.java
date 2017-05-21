@@ -19,18 +19,25 @@ package com.github.mysqlbinlog.model.event.extra;
 public final class EnumColumn extends Column {
     private static final long serialVersionUID = 1349490898147876486L;
     private final int value;
+    private final String stringValue;
 
-    public EnumColumn(int type, int value) {
-        super(type);
+    public EnumColumn(String name, int type, int value, String stringValue) {
+        super(name, type);
         this.value = value;
+        this.stringValue = stringValue;
     }
 
     public Integer getValue() {
         return this.value;
     }
+    
+    public String getStringValue() {
+        return this.stringValue;
+    }
 
     @Override
     public String toString() {
-        return "EnumColumn [value=" + value + "]";
+        return "EnumColumn [value=" + value + ", stringValue=" + stringValue
+                + ", getName()=" + getName() + "]";
     }
 }

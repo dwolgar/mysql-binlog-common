@@ -23,8 +23,8 @@ public final class IntegerColumn extends Column {
 
     private final int value;
 
-    public IntegerColumn(int type, int value) {
-        super(type);
+    public IntegerColumn(String name, int type, int value) {
+        super(name, type);
         this.value = value;
     }
 
@@ -34,6 +34,7 @@ public final class IntegerColumn extends Column {
 
     @Override
     public String toString() {
-        return "LongColumn [value=" + value + "]";
+        return "IntegerColumn [value=" + value + ", getName()=" + getName()
+                + "]";
     }
 }

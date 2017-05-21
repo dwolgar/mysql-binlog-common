@@ -16,12 +16,15 @@
 
 package com.github.mysqlbinlog.common;
 
+import com.github.mysqlbinlog.event.deserializer.BinlogDeserializerContext;
 import com.github.mysqlbinlog.model.event.BinlogEvent;
 
 public interface MysqlBinlogReader {
     public void open();
     public BinlogEvent readBinlogEvent();
     public void close();
+    
+    public BinlogDeserializerContext getBinlogDeserializerContext();
     
     public void setEventPosition(EventPosition eventPosition);
     public EventPosition getEventPosition();

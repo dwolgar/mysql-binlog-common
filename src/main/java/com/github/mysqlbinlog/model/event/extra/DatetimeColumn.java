@@ -22,8 +22,8 @@ public final class DatetimeColumn extends Column {
     private static final long serialVersionUID = 9119310818026556288L;
     private final Date value;
 
-    public DatetimeColumn(int type, Date value) {
-        super(type);
+    public DatetimeColumn(String name, int type, Date value) {
+        super(name, type);
         this.value = value;
     }
 
@@ -34,6 +34,7 @@ public final class DatetimeColumn extends Column {
 
     @Override
     public String toString() {
-        return "DatetimeColumn [value=" + value + "]";
+        return "DatetimeColumn [value=" + value + ", getName()=" + getName()
+                + "]";
     }
 }

@@ -23,8 +23,8 @@ public class BitsetColumn extends Column {
     
     private final BitSet value;
 
-    public BitsetColumn(int type, BitSet value) {
-        super(type);
+    public BitsetColumn(String name, int type, BitSet value) {
+        super(name, type);
         this.value = value;
     }
 
@@ -35,7 +35,8 @@ public class BitsetColumn extends Column {
 
     @Override
     public String toString() {
-        return "BitsetColumn [value=" + value + "]";
+        return "BitsetColumn [value=" + value + ", getName()=" + getName()
+                + "]";
     }
 
 }

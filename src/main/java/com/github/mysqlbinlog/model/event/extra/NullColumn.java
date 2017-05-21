@@ -20,8 +20,8 @@ public final class NullColumn extends Column {
     private static final long serialVersionUID = -3548523546268990115L;
     private final int columnType;
 
-    public NullColumn(int type, int columnType) {
-        super(type);
+    public NullColumn(String name, int type, int columnType) {
+        super(name, type);
         this.columnType = columnType;
     }
 
@@ -36,7 +36,8 @@ public final class NullColumn extends Column {
 
     @Override
     public String toString() {
-        return "NullColumn [type=" + this.columnType + "]";
+        return "NullColumn [columnType=" + columnType + ", getName()="
+                + getName() + "]";
     }
 
 }

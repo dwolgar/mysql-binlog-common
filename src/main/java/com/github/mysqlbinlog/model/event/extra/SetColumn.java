@@ -19,18 +19,26 @@ package com.github.mysqlbinlog.model.event.extra;
 public final class SetColumn extends Column {
     private static final long serialVersionUID = -4284581552411985097L;
     private final long value;
+    private final String stringValue;
 
-    public SetColumn(int type, long value) {
-        super(type);
+    public SetColumn(String name, int type, long value, String stringValue) {
+        super(name, type);
         this.value = value;
+        this.stringValue = stringValue;
     }
 
     public Long getValue() {
         return this.value;
     }
     
+    public String getStringValue() {
+        return this.stringValue;
+    }
+
     @Override
     public String toString() {
-        return "SetColumn [value=" + value + "]";
+        return "SetColumn [value=" + value + ", stringValue=" + stringValue
+                + ", getName()=" + getName() + "]";
     }
+    
 }

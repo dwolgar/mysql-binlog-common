@@ -20,8 +20,8 @@ public final class StringColumn extends Column {
     private static final long serialVersionUID = 749371729285531226L;
     private final String value;
 
-    public StringColumn(int type, String value) {
-        super(type);
+    public StringColumn(String name, int type, String value) {
+        super(name, type);
         this.value = value;
     }
 
@@ -31,6 +31,7 @@ public final class StringColumn extends Column {
 
     @Override
     public String toString() {
-        return "StringColumn [value=" + value + "]";
+        return "StringColumn [value=" + value + ", getName()=" + getName()
+                + "]";
     }
 }

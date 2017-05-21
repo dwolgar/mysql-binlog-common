@@ -17,13 +17,16 @@
 package com.github.mysqlbinlog.event.deserializer;
 
 
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.List;
 
 import com.github.mysql.constant.MysqlConstants;
 import com.github.mysql.io.MysqlBinlogByteArrayInputStream;
 import com.github.mysqlbinlog.model.event.BinlogEvent;
 import com.github.mysqlbinlog.model.event.TableMapEvent;
+import com.github.mysqlbinlog.model.event.extra.ColumnExtraData;
 import com.github.mysqlbinlog.model.event.extra.Metadata;
 
 public class TableMapEventDeserializer implements BinlogEventDeserializer<TableMapEvent> {
@@ -43,6 +46,9 @@ public class TableMapEventDeserializer implements BinlogEventDeserializer<TableM
         event.setColumnMetadataCount(is.readMysqlPackedNumber().longValue());
         event.setColumnMetadata(readMetadata(event.getColumnTypes(), is.read((int)event.getColumnMetadataCount())));
         event.setColumnNullabilities(is.readBitSet((int)event.getColumnCount(), true));
+        
+        List<ColumnExtraData> items = context.getColumnExtra(event.getDatabaseName(), event.getTableName());
+        event.setColumnExtra(items);
         
         context.setTableMapEvent(event);
         
