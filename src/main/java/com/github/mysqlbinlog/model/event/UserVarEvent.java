@@ -46,6 +46,7 @@ public final class UserVarEvent extends BinlogEvent {
     public String getVarName() {
         return varName;
     }
+
     public void setVarName(String varName) {
         this.varName = varName;
     }
@@ -53,6 +54,7 @@ public final class UserVarEvent extends BinlogEvent {
     public int getIsNull() {
         return isNull;
     }
+    
     public void setIsNull(int isNull) {
         this.isNull = isNull;
     }
@@ -60,6 +62,7 @@ public final class UserVarEvent extends BinlogEvent {
     public int getVarType() {
         return varType;
     }
+    
     public void setVarType(int variableType) {
         this.varType = variableType;
     }
@@ -67,6 +70,7 @@ public final class UserVarEvent extends BinlogEvent {
     public int getVarCollation() {
         return varCollation;
     }
+    
     public void setVarCollation(int varCollation) {
         this.varCollation = varCollation;
     }
@@ -74,6 +78,7 @@ public final class UserVarEvent extends BinlogEvent {
     public int getVarValueLength() {
         return varValueLength;
     }
+    
     public void setVarValueLength(int varValueLength) {
         this.varValueLength = varValueLength;
     }
@@ -81,6 +86,7 @@ public final class UserVarEvent extends BinlogEvent {
     public UserVariable getVarValue() {
         return varValue;
     }
+    
     public void setVarValue(UserVariable varValue) {
         this.varValue = varValue;
     }

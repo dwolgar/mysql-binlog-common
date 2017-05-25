@@ -16,12 +16,6 @@
 
 package com.github.mysqlbinlog.event.deserializer;
 
-import java.io.IOException;
-
-import java.util.ArrayList;
-import java.util.BitSet;
-import java.util.List;
-
 import com.github.mysql.constant.MysqlConstants;
 import com.github.mysql.io.MysqlBinlogByteArrayInputStream;
 import com.github.mysql.utils.MysqlUtils;
@@ -44,6 +38,11 @@ import com.github.mysqlbinlog.model.event.extra.Row;
 import com.github.mysqlbinlog.model.event.extra.SetColumn;
 import com.github.mysqlbinlog.model.event.extra.StringColumn;
 
+import java.io.IOException;
+
+import java.util.ArrayList;
+import java.util.BitSet;
+import java.util.List;
 
 public abstract class AbstractRowEventDeserializer<E extends BinlogEvent> implements BinlogEventDeserializer<E> {
 
@@ -82,7 +81,16 @@ public abstract class AbstractRowEventDeserializer<E extends BinlogEvent> implem
                 }
             }
             
-            String columnName = (columnsExtraItems == null ? null : columnsExtraItems.get(i).getName());
+            
+            ColumnExtraData columnMetaData = null;
+            String columnName = null;
+            
+            if (columnsExtraItems != null) {
+                columnMetaData = columnsExtraItems.get(i);
+                if (columnMetaData != null) {
+                    columnName = columnMetaData.getName(); 
+                }
+            }
 
             if (!usedColumns.get(i)) {
                 unusedColumnCount++;
@@ -134,8 +142,7 @@ public abstract class AbstractRowEventDeserializer<E extends BinlogEvent> implem
             case MysqlConstants.TYPE_ENUM: {
                 int value = is.readInt(length, true);
                 String stringValue = null;
-                if (columnsExtraItems != null) {
-                    ColumnExtraData columnMetaData = columnsExtraItems.get(i);
+                if (columnMetaData != null) {
                     String[] valueSet = columnMetaData.getValueSet();
                     stringValue = (valueSet == null ? null : valueSet[value - 1]);
                 }
@@ -144,8 +151,7 @@ public abstract class AbstractRowEventDeserializer<E extends BinlogEvent> implem
             case MysqlConstants.TYPE_SET: {
                 long value = is.readLong(length, true);
                 String stringValue = null;
-                if (columnsExtraItems != null) {
-                    ColumnExtraData columnMetaData = columnsExtraItems.get(i);
+                if (columnMetaData != null) {
                     String[] valueSet = columnMetaData.getValueSet();
                     stringValue = (valueSet == null ? null : valueSet[(int)value - 1]);
                 }

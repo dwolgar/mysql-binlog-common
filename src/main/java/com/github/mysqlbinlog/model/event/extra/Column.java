@@ -37,5 +37,5 @@ public abstract class Column implements Serializable {
     }
 
     
-    abstract public Object getValue();
+    public abstract Object getValue();
 }

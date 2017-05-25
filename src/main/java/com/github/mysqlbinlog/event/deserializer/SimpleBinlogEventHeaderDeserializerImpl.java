@@ -16,23 +16,23 @@
 
 package com.github.mysqlbinlog.event.deserializer;
 
-import java.io.IOException;
-
 import com.github.mysql.io.MysqlBinlogByteArrayInputStream;
 import com.github.mysql.protocol.model.OKResponsePacket;
 import com.github.mysqlbinlog.model.event.BinlogEventHeader;
+
+import java.io.IOException;
 
 public class SimpleBinlogEventHeaderDeserializerImpl implements BinlogEventHeaderDeserializer {
 
     public BinlogEventHeader deserialize(MysqlBinlogByteArrayInputStream is) throws IOException {
         BinlogEventHeader header = new BinlogEventHeader();
         
-        int OK = is.readInt(1, true);
-        if (OK != OKResponsePacket.HEADER) {
+        int ok = is.readInt(1, true);
+        if (ok != OKResponsePacket.HEADER) {
             throw new RuntimeException("Invalid BinLog Event Header");
         }
         
-        header.setTimestamp(is.readLong(4, true) * 1000l);
+        header.setTimestamp(is.readLong(4, true) * 1000L);
         header.setEventType(is.readInt(1, true));
         header.setServerId(is.readLong(4, true));
         header.setEventLength(is.readLong(4, true));

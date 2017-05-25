@@ -28,6 +28,7 @@ public class EventPosition {
     public String getBinlogFileName() {
         return binlogFileName;
     }
+    
     public void setBinlogFileName(String binlogFileName) {
         this.binlogFileName = binlogFileName;
     }
@@ -35,6 +36,7 @@ public class EventPosition {
     public long getPosition() {
         return position;
     }
+    
     public void setPosition(long position) {
         this.position = position;
     }

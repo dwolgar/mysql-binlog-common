@@ -16,15 +16,15 @@
 
 package com.github.mysqlbinlog.event.deserializer;
 
-import java.io.ByteArrayInputStream;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.github.mysql.io.MysqlBinlogByteArrayInputStream;
 import com.github.mysqlbinlog.event.checksum.MysqlChecksum;
 import com.github.mysqlbinlog.model.event.BinlogEvent;
 import com.github.mysqlbinlog.model.event.BinlogEventHeader;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.ByteArrayInputStream;
 
 @SuppressWarnings("rawtypes")
 public class SimpleSingleBinglogEventDeserializerImpl implements SingleBinglogEventDeserializer {
@@ -48,8 +48,7 @@ public class SimpleSingleBinglogEventDeserializerImpl implements SingleBinglogEv
         
         try {
             eventHeader = binlogEventHeaderParser.deserialize(is);
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
         
@@ -70,8 +69,9 @@ public class SimpleSingleBinglogEventDeserializerImpl implements SingleBinglogEv
         is.setInputStream(new ByteArrayInputStream(rawData, rawData.length - checksum.getSize(), checksum.getSize()));
         checksum.readChecksum(is);
         if (!checksum.validate()) {
-            if (LOGGER.isDebugEnabled())
+            if (LOGGER.isDebugEnabled()) {
                 LOGGER.debug("Invalid checksum [" + checksum.getValue() + "][" + checksum.getExpectedValue() + "][" + event + "]");
+            }
             throw new RuntimeException("Invalid checksum [" + checksum.getValue() + "][" + checksum.getExpectedValue() + "][" + event + "]");
         }
         checksum.reset();
@@ -83,6 +83,7 @@ public class SimpleSingleBinglogEventDeserializerImpl implements SingleBinglogEv
     public BinlogEventHeaderDeserializer getBinlogEventHeaderParser() {
         return binlogEventHeaderParser;
     }
+    
     public void setBinlogEventHeaderParser(BinlogEventHeaderDeserializer binlogEventHeaderParser) {
         this.binlogEventHeaderParser = binlogEventHeaderParser;
     }
@@ -90,6 +91,7 @@ public class SimpleSingleBinglogEventDeserializerImpl implements SingleBinglogEv
     public BinlogEventFactory getBinlogEventFactory() {
         return binlogEventFactory;
     }
+    
     public void setBinlogEventFactory(BinlogEventFactory binlogEventFactory) {
         this.binlogEventFactory = binlogEventFactory;
     }
@@ -97,8 +99,8 @@ public class SimpleSingleBinglogEventDeserializerImpl implements SingleBinglogEv
     public BinlogEventDeserializerFactory getBinlogEventUnmarshallerFactory() {
         return binlogEventUnmarshallerFactory;
     }
+    
     public void setBinlogEventUnmarshallerFactory(BinlogEventDeserializerFactory binlogEventUnmarshallerFactory) {
         this.binlogEventUnmarshallerFactory = binlogEventUnmarshallerFactory;
     }
-
 }

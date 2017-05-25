@@ -17,24 +17,16 @@
 package com.github.mysqlbinlog.event.deserializer;
 
 
+
 import static org.junit.Assert.assertEquals;
 
-import javax.xml.bind.DatatypeConverter;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.github.mysqlbinlog.event.checksum.NoneMysqlChecksumImpl;
+import com.github.mysqlbinlog.event.deserializer.BinlogEventDeserializerFactory;
 import com.github.mysqlbinlog.event.deserializer.BinlogEventFactory;
 import com.github.mysqlbinlog.event.deserializer.BinlogEventHeaderDeserializer;
-import com.github.mysqlbinlog.event.deserializer.BinlogEventDeserializerFactory;
+import com.github.mysqlbinlog.event.deserializer.SimpleBinlogEventDeserializerFactoryImpl;
 import com.github.mysqlbinlog.event.deserializer.SimpleBinlogEventFactoryImpl;
 import com.github.mysqlbinlog.event.deserializer.SimpleBinlogEventHeaderDeserializerImpl;
-import com.github.mysqlbinlog.event.deserializer.SimpleBinlogEventDeserializerFactoryImpl;
 import com.github.mysqlbinlog.event.deserializer.SimpleBinlogDeserializerContextImpl;
 import com.github.mysqlbinlog.event.deserializer.SimpleSingleBinglogEventDeserializerImpl;
 import com.github.mysqlbinlog.event.deserializer.SingleBinglogEventDeserializer;
@@ -48,9 +40,19 @@ import com.github.mysqlbinlog.model.event.UpdateRowsEvent;
 import com.github.mysqlbinlog.model.event.WriteRowsEvent;
 import com.github.mysqlbinlog.model.event.XidEvent;
 
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.xml.bind.DatatypeConverter;
+
 @RunWith(JUnit4.class)
 public class BinlogEventDeserializerTest {
-    private final Logger LOGGER = LoggerFactory.getLogger(BinlogEventDeserializerTest.class);
+    private final Logger logger = LoggerFactory.getLogger(BinlogEventDeserializerTest.class);
     
     private SingleBinglogEventDeserializer singleBinglogEventUnmarshaller;
     
@@ -67,7 +69,7 @@ public class BinlogEventDeserializerTest {
     }
     
     @Test
-    public void QueryEventDeserializerTest() {
+    public void queryEventDeserializerTest() {
         SimpleBinlogDeserializerContextImpl binlogParserContext = new SimpleBinlogDeserializerContextImpl();
         binlogParserContext.setChecksum(new NoneMysqlChecksumImpl());
         
@@ -86,12 +88,12 @@ public class BinlogEventDeserializerTest {
         queryEvent = (QueryEvent) singleBinglogEventUnmarshaller.deserialize(DatatypeConverter.parseHexBinary(hexEvent), binlogParserContext);
         assertEquals("failure - Query strings are not equal", "mysql", queryEvent.getDatabaseName());
         
-        LOGGER.debug("QueryEvent [" + queryEvent + "]");
+        logger.debug("QueryEvent [" + queryEvent + "]");
 
     }
     
     @Test
-    public void XidEventDeserializerTest() {
+    public void xidEventDeserializerTest() {
         SimpleBinlogDeserializerContextImpl binlogParserContext = new SimpleBinlogDeserializerContextImpl();
         binlogParserContext.setChecksum(new NoneMysqlChecksumImpl());
 
@@ -100,12 +102,12 @@ public class BinlogEventDeserializerTest {
         XidEvent xidEvent = (XidEvent) singleBinglogEventUnmarshaller.deserialize(DatatypeConverter.parseHexBinary(hexEvent), binlogParserContext);
         assertEquals("failure - XidEvent XID are not equal", 955, xidEvent.getXid());
     
-        LOGGER.debug("XidEvent [" + xidEvent + "]");
+        logger.debug("XidEvent [" + xidEvent + "]");
     }
 
     
     @Test
-    public void StopEventDeserializerTest() {
+    public void stopEventDeserializerTest() {
         SimpleBinlogDeserializerContextImpl binlogParserContext = new SimpleBinlogDeserializerContextImpl();
         binlogParserContext.setChecksum(new NoneMysqlChecksumImpl());
 
@@ -114,11 +116,11 @@ public class BinlogEventDeserializerTest {
         StopEvent stopEvent = (StopEvent) singleBinglogEventUnmarshaller.deserialize(DatatypeConverter.parseHexBinary(hexEvent), binlogParserContext);
         assertEquals("failure - StopEvent event type are not equal", 3, stopEvent.getHeader().getEventType());
     
-        LOGGER.debug("StopEvent [" + stopEvent + "]");
+        logger.debug("StopEvent [" + stopEvent + "]");
     }
     
     @Test
-    public void RotateEventDeserializerTest() {
+    public void rotateEventDeserializerTest() {
         SimpleBinlogDeserializerContextImpl binlogParserContext = new SimpleBinlogDeserializerContextImpl();
         binlogParserContext.setChecksum(new NoneMysqlChecksumImpl());
 
@@ -127,11 +129,11 @@ public class BinlogEventDeserializerTest {
         RotateEvent rotateEvent = (RotateEvent) singleBinglogEventUnmarshaller.deserialize(DatatypeConverter.parseHexBinary(hexEvent), binlogParserContext);
         assertEquals("failure - RotateEvent fileName are not equal", "mysql-bin.000092", rotateEvent.getBinlogFileName());
         
-        LOGGER.debug("RotateEvent [" + rotateEvent + "]");
+        logger.debug("RotateEvent [" + rotateEvent + "]");
     }
     
     @Test
-    public void FormatDescriptionEventDeserializerTest() {
+    public void formatDescriptionEventDeserializerTest() {
         SimpleBinlogDeserializerContextImpl binlogParserContext = new SimpleBinlogDeserializerContextImpl();
         binlogParserContext.setChecksum(new NoneMysqlChecksumImpl());
 
@@ -140,13 +142,13 @@ public class BinlogEventDeserializerTest {
         FormatDescriptionEvent formatDescriptionEvent = (FormatDescriptionEvent) singleBinglogEventUnmarshaller.deserialize(DatatypeConverter.parseHexBinary(hexEvent), binlogParserContext);
         assertEquals("failure - FormatDescriptionEvent fileName are not equal", "5.6.30-0ubuntu0.14.04.1-log", formatDescriptionEvent.getServerVersion());
         
-        LOGGER.debug("FormatDescriptionEvent [" + formatDescriptionEvent + "]");
+        logger.debug("FormatDescriptionEvent [" + formatDescriptionEvent + "]");
     }
 
 
     
     @Test
-    public void UpdateRowsEventV2DeserializerTest() {
+    public void updateRowsEventV2DeserializerTest() {
         SimpleBinlogDeserializerContextImpl binlogParserContext = new SimpleBinlogDeserializerContextImpl();
         binlogParserContext.setChecksum(new NoneMysqlChecksumImpl());
 
@@ -154,16 +156,16 @@ public class BinlogEventDeserializerTest {
         
         TableMapEvent tableMapEvent = (TableMapEvent) singleBinglogEventUnmarshaller.deserialize(DatatypeConverter.parseHexBinary(hexEvent), binlogParserContext);
         assertEquals("failure - TableMapEvent tableName are not equal", "user", tableMapEvent.getTableName());
-        LOGGER.debug("TableMapEvent [" + tableMapEvent + "]");
+        logger.debug("TableMapEvent [" + tableMapEvent + "]");
         
         hexEvent = "00EC6336571F6F0000005A010000C40200000000000000000000010002002BFFFFFFFFFFFFFFFFFFFFFFFF0000000000FA096C6F63616C686F73741064656269616E2D7379732D6D61696E74292A3633384343383236433345383332463542313134344331363038313739324636363033383231434302020202020202020202020202020202020202020202020202020202010100000000000000000000000000000000000000000000156D7973716C5F6E61746976655F70617373776F7264010000000000FA096C6F63616C686F73741064656269616E2D7379732D6D61696E74292A3633384343383236433345383332463542313134344331363038313739324636363033383231434302020202020202020202020202020202020202020202020202020202010100000000000000000000000000000000000000000000156D7973716C5F6E61746976655F70617373776F726401";
         UpdateRowsEvent updateRowsEvent = (UpdateRowsEvent ) singleBinglogEventUnmarshaller.deserialize(DatatypeConverter.parseHexBinary(hexEvent), binlogParserContext);
         assertEquals("failure - UpdateRowsEvent tableName are not equal", "user", updateRowsEvent.getTableName());
-        LOGGER.debug("UpdateRowsEvent [" + updateRowsEvent + "]");
+        logger.debug("UpdateRowsEvent [" + updateRowsEvent + "]");
     }
     
     @Test
-    public void WriteRowsEventV2DeserializerTest() {
+    public void writeRowsEventV2DeserializerTest() {
         SimpleBinlogDeserializerContextImpl binlogParserContext = new SimpleBinlogDeserializerContextImpl();
         binlogParserContext.setChecksum(new NoneMysqlChecksumImpl());
 
@@ -171,26 +173,26 @@ public class BinlogEventDeserializerTest {
         
         TableMapEvent tableMapEvent = (TableMapEvent) singleBinglogEventUnmarshaller.deserialize(DatatypeConverter.parseHexBinary(hexEvent), binlogParserContext);
         assertEquals("failure - TableMapEvent tableName are not equal", "help_relation", tableMapEvent.getTableName());
-        LOGGER.debug("TableMapEvent [" + tableMapEvent + "]");
+        logger.debug("TableMapEvent [" + tableMapEvent + "]");
         
         hexEvent = "00EA6336571E6F0000002C000000DFF6120000005400000000000100020002FFFC3802000060020000";
         WriteRowsEvent writeRowsEvent = (WriteRowsEvent ) singleBinglogEventUnmarshaller.deserialize(DatatypeConverter.parseHexBinary(hexEvent), binlogParserContext);
         assertEquals("failure - WriteRowsEvent tableName are not equal", "help_relation", writeRowsEvent.getTableName());
-        LOGGER.debug("WriteRowsEvent [" + writeRowsEvent + "]");
+        logger.debug("WriteRowsEvent [" + writeRowsEvent + "]");
 
         hexEvent = "00B9993B57136F000000520000001A010000000092000000000001000474657374000F646966666572656E745F76616C7565000C0308F6040512110AFE0FFCFC0C0A0204080000F70100020202BE0D";
         tableMapEvent = (TableMapEvent) singleBinglogEventUnmarshaller.deserialize(DatatypeConverter.parseHexBinary(hexEvent), binlogParserContext);
         assertEquals("failure - TableMapEvent tableName are not equal", "different_value", tableMapEvent.getTableName());
-        LOGGER.debug("TableMapEvent [" + tableMapEvent + "]");
+        logger.debug("TableMapEvent [" + tableMapEvent + "]");
         
         hexEvent = "00B9993B571E6F000000AC000000330300000000920000000000010002000CFFFFA0F0160000001027000000000000800000020055555540BAAAAAAAAAAAFA3F573B99B9020600746573745F314D00615546425155464251554642515546425155464251554642515546425155464251554642515546425155464251574A69596D4A69596D4A69596D4A69596D4A69596D4A69596D4A6959673D3D0A0B005445535420544558542031";
         writeRowsEvent = (WriteRowsEvent ) singleBinglogEventUnmarshaller.deserialize(DatatypeConverter.parseHexBinary(hexEvent), binlogParserContext);
         assertEquals("failure - WriteRowsEvent tableName are not equal", "different_value", writeRowsEvent.getTableName());
-        LOGGER.debug("WriteRowsEvent [" + writeRowsEvent + "]");
+        logger.debug("WriteRowsEvent [" + writeRowsEvent + "]");
     }
     
     @Test
-    public void DeleteRowsEventV2DeserializerTest() {
+    public void deleteRowsEventV2DeserializerTest() {
         SimpleBinlogDeserializerContextImpl binlogParserContext = new SimpleBinlogDeserializerContextImpl();
         binlogParserContext.setChecksum(new NoneMysqlChecksumImpl());
 
@@ -198,34 +200,38 @@ public class BinlogEventDeserializerTest {
         
         TableMapEvent tableMapEvent = (TableMapEvent) singleBinglogEventUnmarshaller.deserialize(DatatypeConverter.parseHexBinary(hexEvent), binlogParserContext);
         assertEquals("failure - TableMapEvent tableName are not equal", "different_value", tableMapEvent.getTableName());
-        LOGGER.debug("TableMapEvent [" + tableMapEvent + "]");
+        logger.debug("TableMapEvent [" + tableMapEvent + "]");
         
         hexEvent = "00529A3B57206F000000540C0000401000000000920000000000010002000CFFFF00F001000000000000000000000080000000000000000000000000000000009998B2EB3656CF83E659C00F010600746573745F304D00615546425155464251554642515546425155464251554642515546425155464251554642515546425155464251574A69596D4A69596D4A69596D4A69596D4A69596D4A69596D4A6959673D3D0A0B00544553542054455854203000F0020000001027000000000000800000020055555540BAAAAAAAAAAAFA3F9998B2EB3656CF83E659C00F020600746573745F314D00615546425155464251554642515546425155464251554642515546425155464251554642515546425155464251574A69596D4A69596D4A69596D4A69596D4A69596D4A69596D4A6959673D3D0A0B00544553542054455854203100F003000000204E00000000000080000004005555D540A3AAAAAAAAAA0A409998B2EB3656CF83E659C00F030600746573745F324D00615546425155464251554642515546425155464251554642515546425155464251554642515546425155464251574A69596D4A69596D4A69596D4A69596D4A69596D4A69596D4A6959673D3D0A0B00544553542054455854203200F004000000307500000000000080000006000000204100000000000014409998B2EB3656CF83E659C00F040600746573745F334D00615546425155464251554642515546425155464251554642515546425155464251554642515546425155464251574A69596D4A69596D4A69596D4A69596D4A69596D4A69596D4A6959673D3D0A0B00544553542054455854203300F005000000409C000000000000800000080055555541AEAAAAAAAAAA1A409998B2EB3656CF83E659C00F000600746573745F344D00615546425155464251554642515546425155464251554642515546425155464251554642515546425155464251574A69596D4A69596D4A69596D4A69596D4A69596D4A69596D4A6959673D3D0A0B00544553542054455854203400F00600000050C30000000000008000000A0055558541A9AAAAAAAAAA20409998B2EB3656CF83E659C00F010600746573745F354D00615546425155464251554642515546425155464251554642515546425155464251554642515546425155464251574A69596D4A69596D4A69596D4A69596D4A69596D4A69596D4A6959673D3D0A0B00544553542054455854203500F00700000060EA0000000000008000000C000000A04100000000000024409998B2EB3656CF83E659C00F020600746573745F364D00615546425155464251554642515546425155464251554642515546425155464251554642515546425155464251574A69596D4A69596D4A69596D4A69596D4A69596D4A69596D4A6959673D3D0A0B00544553542054455854203600F00800000070110100000000008000000E00ABAABA4168555555555527409998B2EB3656CF83E659C00F030600746573745F374D00615546425155464251554642515546425155464251554642515546425155464251554642515546425155464251574A69596D4A69596D4A69596D4A69596D4A69596D4A69596D4A6959673D3D0A0B00544553542054455854203700F009000000803801000000000080000010005555D54198AAAAAAAAAA2A409998B2EB3656CF83E659C00F040600746573745F384D00615546425155464251554642515546425155464251554642515546425155464251554642515546425155464251574A69596D4A69596D4A69596D4A69596D4A69596D4A69596D4A6959673D3D0A0B00544553542054455854203800F00A000000905F01000000000080000012000000F0410000000000002E409998B2EB3656CF83E659C00F000600746573745F394D00615546425155464251554642515546425155464251554642515546425155464251554642515546425155464251574A69596D4A69596D4A69596D4A69596D4A69596D4A69596D4A6959673D3D0A0B00544553542054455854203900F00B000000000000000000000080000000000000000000000000000000009998B2ECDE56CF857259C00F010600746573745F304D00615546425155464251554642515546425155464251554642515546425155464251554642515546425155464251574A69596D4A69596D4A69596D4A69596D4A69596D4A69596D4A6959673D3D0A0B005445535420544558542030A0F00C0000001027000000000000800000020055555540BAAAAAAAAAAAFA3F56CF8572020600746573745F314D00615546425155464251554642515546425155464251554642515546425155464251554642515546425155464251574A69596D4A69596D4A69596D4A69596D4A69596D4A69596D4A6959673D3D0A0B00544553542054455854203100F00D000000204E00000000000080000004005555D540A3AAAAAAAAAA0A409998B2ECDE56CF857259C00F030600746573745F324D00615546425155464251554642515546425155464251554642515546425155464251554642515546425155464251574A69596D4A69596D4A69596D4A69596D4A69596D4A69596D4A6959673D3D0A0B005445535420544558542032A0F00E0000003075000000000000800000060000002041000000000000144056CF8572040600746573745F334D00615546425155464251554642515546425155464251554642515546425155464251554642515546425155464251574A69596D4A69596D4A69596D4A69596D4A69596D4A69596D4A6959673D3D0A0B00544553542054455854203300F00F000000409C000000000000800000080055555541AEAAAAAAAAAA1A409998B2ECDE56CF857259C00F000600746573745F344D00615546425155464251554642515546425155464251554642515546425155464251554642515546425155464251574A69596D4A69596D4A69596D4A69596D4A69596D4A69596D4A6959673D3D0A0B005445535420544558542034A0F01000000050C30000000000008000000A0055558541A9AAAAAAAAAA204056CF8572010600746573745F354D00615546425155464251554642515546425155464251554642515546425155464251554642515546425155464251574A69596D4A69596D4A69596D4A69596D4A69596D4A69596D4A6959673D3D0A0B00544553542054455854203500F01100000060EA0000000000008000000C000000A04100000000000024409998B2ECDE56CF857259C00F020600746573745F364D00615546425155464251554642515546425155464251554642515546425155464251554642515546425155464251574A69596D4A69596D4A69596D4A69596D4A69596D4A69596D4A6959673D3D0A0B005445535420544558542036A0F01200000070110100000000008000000E00ABAABA41685555555555274056CF8572030600746573745F374D00615546425155464251554642515546425155464251554642515546425155464251554642515546425155464251574A69596D4A69596D4A69596D4A69596D4A69596D4A69596D4A6959673D3D0A0B00544553542054455854203700F013000000803801000000000080000010005555D54198AAAAAAAAAA2A409998B2ECDE56CF857259C00F040600746573745F384D00615546425155464251554642515546425155464251554642515546425155464251554642515546425155464251574A69596D4A69596D4A69596D4A69596D4A69596D4A69596D4A6959673D3D0A0B005445535420544558542038A0F014000000905F01000000000080000012000000F0410000000000002E4056CF8572000600746573745F394D00615546425155464251554642515546425155464251554642515546425155464251554642515546425155464251574A69596D4A69596D4A69596D4A69596D4A69596D4A69596D4A6959673D3D0A0B00544553542054455854203900F01500000000000000000000008000000000000000000000000000000000999962F5B1573B99B9B1C00F010600746573745F304D00615546425155464251554642515546425155464251554642515546425155464251554642515546425155464251574A69596D4A69596D4A69596D4A69596D4A69596D4A69596D4A6959673D3D0A0B005445535420544558542030A0F0160000001027000000000000800000020055555540BAAAAAAAAAAAFA3F573B99B9020600746573745F314D00615546425155464251554642515546425155464251554642515546425155464251554642515546425155464251574A69596D4A69596D4A69596D4A69596D4A69596D4A69596D4A6959673D3D0A0B005445535420544558542031";
         DeleteRowsEvent deleteRowsEvent = (DeleteRowsEvent ) singleBinglogEventUnmarshaller.deserialize(DatatypeConverter.parseHexBinary(hexEvent), binlogParserContext);
         assertEquals("failure - DeleteRowsEvent tableName are not equal", "different_value", deleteRowsEvent.getTableName());
-        LOGGER.debug("DeleteRowsEvent [" + deleteRowsEvent + "]");
+        logger.debug("DeleteRowsEvent [" + deleteRowsEvent + "]");
 
     }
 
 
     @Test
-    public void UserVarEventDeserializerTest() {
+    public void userVarEventDeserializerTest() {
         
     }
+    
     @Test
-    public void RandEventDeserializerTest() {
+    public void randEventDeserializerTest() {
         
     }
+    
     @Test
-    public void IntVarEventDeserializerTest() {
+    public void intVarEventDeserializerTest() {
         
     }
+    
     @Test
-    public void IncidentEventDeserializerTest() {
+    public void incidentEventDeserializerTest() {
         
     }
+    
     @Test
-    public void GtidEventDeserializerTest() {
+    public void gtidEventDeserializerTest() {
         
     }
     
@@ -241,13 +247,12 @@ public class BinlogEventDeserializerTest {
             
             if (columnType.startsWith("enum")) {
                 valueSet = columnType.substring(6, columnType.length() - 2).split("','");
-            }
-            else if (columnType.startsWith("set")) {
+            } else if (columnType.startsWith("set")) {
                 valueSet = columnType.substring(5, columnType.length() - 2).split("','");
             }
 
             for (String s : valueSet) {
-                LOGGER.debug("String value [" + s + "]");
+                logger.debug("String value [" + s + "]");
             }
         }
     }

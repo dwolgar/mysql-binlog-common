@@ -16,12 +16,12 @@
 
 package com.github.mysqlbinlog.event.deserializer;
 
-import java.io.IOException;
-import java.math.BigInteger;
-
 import com.github.mysql.io.MysqlBinlogByteArrayInputStream;
 import com.github.mysqlbinlog.model.event.BinlogEvent;
 import com.github.mysqlbinlog.model.event.IntvarEvent;
+
+import java.io.IOException;
+import java.math.BigInteger;
 
 public class IntvarEventDeserializer implements BinlogEventDeserializer<IntvarEvent> {
 

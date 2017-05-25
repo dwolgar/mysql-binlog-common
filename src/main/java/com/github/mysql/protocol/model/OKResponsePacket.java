@@ -43,6 +43,7 @@ public class OKResponsePacket implements ResponsePacket {
     public Long getAffectedRows() {
         return affectedRows;
     }
+    
     public void setAffectedRows(Long affectedRows) {
         this.affectedRows = affectedRows;
     }
@@ -50,6 +51,7 @@ public class OKResponsePacket implements ResponsePacket {
     public Long getInsertId() {
         return insertId;
     }
+    
     public void setInsertId(Long insertId) {
         this.insertId = insertId;
     }
@@ -57,6 +59,7 @@ public class OKResponsePacket implements ResponsePacket {
     public int getServerStatus() {
         return serverStatus;
     }
+    
     public void setServerStatus(int serverStatus) {
         this.serverStatus = serverStatus;
     }
@@ -64,6 +67,7 @@ public class OKResponsePacket implements ResponsePacket {
     public int getWarningCount() {
         return warningCount;
     }
+    
     public void setWarningCount(int warningCount) {
         this.warningCount = warningCount;
     }
@@ -71,9 +75,8 @@ public class OKResponsePacket implements ResponsePacket {
     public String getMessage() {
         return message;
     }
+    
     public void setMessage(String message) {
         this.message = message;
     }
-    
-    
 }

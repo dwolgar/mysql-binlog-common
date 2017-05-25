@@ -35,6 +35,7 @@ public final class Pair<T> implements Serializable {
     public T getBefore() {
         return before;
     }
+    
     public void setBefore(T before) {
         this.before = before;
     }
@@ -42,6 +43,7 @@ public final class Pair<T> implements Serializable {
     public T getAfter() {
         return after;
     }
+    
     public void setAfter(T after) {
         this.after = after;
     }

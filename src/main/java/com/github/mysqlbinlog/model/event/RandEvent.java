@@ -38,6 +38,7 @@ public final class RandEvent extends BinlogEvent {
     public long getRandSeed1() {
         return randSeed1;
     }
+    
     public void setRandSeed1(long randSeed1) {
         this.randSeed1 = randSeed1;
     }
@@ -45,6 +46,7 @@ public final class RandEvent extends BinlogEvent {
     public long getRandSeed2() {
         return randSeed2;
     }
+    
     public void setRandSeed2(long randSeed2) {
         this.randSeed2 = randSeed2;
     }

@@ -34,6 +34,7 @@ public class Row implements Serializable {
     public List<Column> getColumns() {
         return columns;
     }
+    
     public void setColumns(List<Column> columns) {
         this.columns = columns;
     }

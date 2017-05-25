@@ -16,12 +16,12 @@
 
 package com.github.mysql.protocol.model;
 
+import com.github.mysql.io.MysqlBinlogByteArrayOutputStream;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import javax.xml.bind.DatatypeConverter;
-
-import com.github.mysql.io.MysqlBinlogByteArrayOutputStream;
 
 public class RawMysqlPacket implements ResponsePacket {
     private static final long serialVersionUID = -8149631338389951783L;
@@ -85,6 +85,7 @@ public class RawMysqlPacket implements ResponsePacket {
     public int getLength() {
         return length;
     }
+    
     public void setLength(int length) {
         this.length = length;
     }
@@ -92,6 +93,7 @@ public class RawMysqlPacket implements ResponsePacket {
     public int getSequence() {
         return sequence;
     }
+    
     public void setSequence(int sequence) {
         this.sequence = sequence;
     }
@@ -99,6 +101,7 @@ public class RawMysqlPacket implements ResponsePacket {
     public byte[] getRawBody() {
         return rawBody;
     }
+    
     public void setRawBody(byte[] rawBody) {
         this.rawBody = rawBody;
     }

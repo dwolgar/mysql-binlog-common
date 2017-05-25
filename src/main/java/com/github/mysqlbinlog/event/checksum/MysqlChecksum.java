@@ -16,9 +16,9 @@
 
 package com.github.mysqlbinlog.event.checksum;
 
-import java.util.zip.Checksum;
-
 import com.github.mysql.io.MysqlBinlogByteArrayInputStream;
+
+import java.util.zip.Checksum;
 
 public interface MysqlChecksum extends Checksum {
 

@@ -33,6 +33,7 @@ public final class Metadata implements Serializable {
     public byte getType(int column) {
         return this.type[column];
     }
+    
     public int getMetadata(int column) {
         return this.metadata[column];
     }

@@ -17,15 +17,15 @@
 package com.github.mysqlbinlog.event.deserializer;
 
 
-import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
-
 import com.github.mysql.io.MysqlBinlogByteArrayInputStream;
 import com.github.mysqlbinlog.model.event.BinlogEvent;
 import com.github.mysqlbinlog.model.event.DeleteRowsEvent;
 import com.github.mysqlbinlog.model.event.TableMapEvent;
 import com.github.mysqlbinlog.model.event.extra.Row;
+
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 public class DeleteRowsEventDeserializer extends AbstractRowEventDeserializer<DeleteRowsEvent> {
     private boolean version2;
@@ -54,8 +54,9 @@ public class DeleteRowsEventDeserializer extends AbstractRowEventDeserializer<De
 
         if (this.isVersion2()) {
             event.setExtraInfoLength(is.readInt(2, true));
-            if (event.getExtraInfoLength() > 2)
+            if (event.getExtraInfoLength() > 2) {
                 event.setExtraInfo(is.read(event.getExtraInfoLength() - 2));
+            }
         }
 
         Number columnCount = is.readMysqlPackedNumber();
@@ -77,6 +78,7 @@ public class DeleteRowsEventDeserializer extends AbstractRowEventDeserializer<De
     public boolean isVersion2() {
         return version2;
     }
+    
     public void setVersion2(boolean version2) {
         this.version2 = version2;
     }

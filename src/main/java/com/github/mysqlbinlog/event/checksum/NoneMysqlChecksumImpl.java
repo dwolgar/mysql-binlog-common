@@ -24,14 +24,14 @@ public class NoneMysqlChecksumImpl implements MysqlChecksum {
      * @see java.util.zip.Checksum#update(int)
      */
     @Override
-    public void update(int b) {
+    public void update(int value) {
     }
 
     /* (non-Javadoc)
      * @see java.util.zip.Checksum#update(byte[], int, int)
      */
     @Override
-    public void update(byte[] b, int off, int len) {
+    public void update(byte[] array, int off, int len) {
     }
 
     /* (non-Javadoc)

@@ -16,9 +16,9 @@
 
 package com.github.mysqlbinlog.event.checksum;
 
-import java.util.zip.CRC32;
-
 import com.github.mysql.io.MysqlBinlogByteArrayInputStream;
+
+import java.util.zip.CRC32;
 
 public class Crc32MysqlChecksumImpl implements MysqlChecksum {
     private final CRC32 checksum = new CRC32();
@@ -29,16 +29,16 @@ public class Crc32MysqlChecksumImpl implements MysqlChecksum {
      * @see java.util.zip.Checksum#update(int)
      */
     @Override
-    public void update(int b) {
-        this.checksum.update(b);
+    public void update(int value) {
+        this.checksum.update(value);
     }
 
     /* (non-Javadoc)
      * @see java.util.zip.Checksum#update(byte[], int, int)
      */
     @Override
-    public void update(byte[] b, int off, int len) {
-        this.checksum.update(b, off, len);
+    public void update(byte[] array, int off, int len) {
+        this.checksum.update(array, off, len);
     }
 
     /* (non-Javadoc)
@@ -94,8 +94,7 @@ public class Crc32MysqlChecksumImpl implements MysqlChecksum {
     public void readChecksum(MysqlBinlogByteArrayInputStream is) {
         try {
             this.expectedValue = (int)is.readInt(4, true);
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
     }

@@ -16,11 +16,11 @@
 
 package com.github.mysql.protocol.model;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-
 import com.github.mysql.constant.MysqlConstants;
 import com.github.mysql.io.MysqlBinlogByteArrayOutputStream;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 public class QueryCmdPacket implements CmdPacket {
     private final String sql;
@@ -35,7 +35,6 @@ public class QueryCmdPacket implements CmdPacket {
         
         os.writeInteger(MysqlConstants.COM_QUERY, 1);
         os.writeString(this.sql);
-//        os.writeZeroTerminatedString(this.sql);
         os.close();
         
         return ((ByteArrayOutputStream)(os.getOutputStream())).toByteArray();

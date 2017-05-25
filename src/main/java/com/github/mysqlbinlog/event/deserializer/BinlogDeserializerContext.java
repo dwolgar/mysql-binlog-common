@@ -16,15 +16,17 @@
 
 package com.github.mysqlbinlog.event.deserializer;
 
-import java.util.List;
-
 import com.github.mysqlbinlog.event.checksum.MysqlChecksum;
 import com.github.mysqlbinlog.model.event.TableMapEvent;
 import com.github.mysqlbinlog.model.event.extra.ColumnExtraData;
 
+import java.util.List;
+
 public interface BinlogDeserializerContext {
     public TableMapEvent getTableMapEvent(long tableId);
+    
     public void setTableMapEvent(TableMapEvent event);
+    
     public MysqlChecksum getChecksum();
     
     public List<ColumnExtraData> getColumnExtra(String databaseName, String tableName);

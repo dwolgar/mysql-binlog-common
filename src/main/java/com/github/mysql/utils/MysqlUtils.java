@@ -25,7 +25,7 @@ public final class MysqlUtils {
     private static final int DIGITS_PER_4BYTES = 9;
     private static final BigDecimal POSITIVE_ONE = BigDecimal.ONE;
     private static final BigDecimal NEGATIVE_ONE = new BigDecimal("-1");
-    private static final int DECIMAL_BINARY_SIZE[] = {0, 1, 1, 2, 2, 3, 3, 4, 4, 4};
+    private static final int DECIMAL_BINARY_SIZE [] = {0, 1, 1, 2, 2, 3, 3, 4, 4, 4};
 
     public static int toYear(int value) {
         return 1900 + value;
@@ -111,7 +111,6 @@ public final class MysqlUtils {
     }
 
     public static BigDecimal toDecimal(int precision, int scale, byte[] value) {
-        //
         final boolean positive = (value[0] & 0x80) == 0x80;
         value[0] ^= 0x80;
         if (!positive) {
@@ -120,33 +119,31 @@ public final class MysqlUtils {
             }
         }
 
-        //
         final int x = precision - scale;
         final int ipDigits = x / DIGITS_PER_4BYTES;
         final int ipDigitsX = x - ipDigits * DIGITS_PER_4BYTES;
         final int ipSize = (ipDigits << 2) + DECIMAL_BINARY_SIZE[ipDigitsX];
         int offset = DECIMAL_BINARY_SIZE[ipDigitsX];
-        BigDecimal ip =
-                offset > 0 ? BigDecimal.valueOf(toInt(value, 0, offset)) : BigDecimal.ZERO;
-                for (; offset < ipSize; offset += 4) {
-                    final int i = toInt(value, offset, 4);
-                    ip = ip.movePointRight(DIGITS_PER_4BYTES).add(BigDecimal.valueOf(i));
-                }
+        BigDecimal ip = offset > 0 ? BigDecimal.valueOf(toInt(value, 0, offset)) : BigDecimal.ZERO;
+        for (; offset < ipSize; offset += 4) {
+            final int i = toInt(value, offset, 4);
+            ip = ip.movePointRight(DIGITS_PER_4BYTES).add(BigDecimal.valueOf(i));
+        }
 
-                //
-                int shift = 0;
-                BigDecimal fp = BigDecimal.ZERO;
-                for (; shift + DIGITS_PER_4BYTES <= scale; shift += DIGITS_PER_4BYTES, offset += 4) {
-                    final int i = toInt(value, offset, 4);
-                    fp = fp.add(BigDecimal.valueOf(i).movePointLeft(shift + DIGITS_PER_4BYTES));
-                }
-                if (shift < scale) {
-                    final int i = toInt(value, offset, DECIMAL_BINARY_SIZE[scale - shift]);
-                    fp = fp.add(BigDecimal.valueOf(i).movePointLeft(scale));
-                }
+        //
+        int shift = 0;
+        BigDecimal fp = BigDecimal.ZERO;
+        for (; shift + DIGITS_PER_4BYTES <= scale; shift += DIGITS_PER_4BYTES, offset += 4) {
+            final int i = toInt(value, offset, 4);
+            fp = fp.add(BigDecimal.valueOf(i).movePointLeft(shift + DIGITS_PER_4BYTES));
+        }
+        if (shift < scale) {
+            final int i = toInt(value, offset, DECIMAL_BINARY_SIZE[scale - shift]);
+            fp = fp.add(BigDecimal.valueOf(i).movePointLeft(scale));
+        }
 
-                //
-                return positive ? POSITIVE_ONE.multiply(ip.add(fp)) : NEGATIVE_ONE.multiply(ip.add(fp));
+        //
+        return positive ? POSITIVE_ONE.multiply(ip.add(fp)) : NEGATIVE_ONE.multiply(ip.add(fp));
     }
 
 
@@ -156,16 +153,15 @@ public final class MysqlUtils {
         final int fpDigits = scale / DIGITS_PER_4BYTES;
         final int ipDigitsX = x - ipDigits * DIGITS_PER_4BYTES;
         final int fpDigitsX = scale - fpDigits * DIGITS_PER_4BYTES;
-        return (ipDigits << 2) + DECIMAL_BINARY_SIZE[ipDigitsX] + (fpDigits << 2)
-                + DECIMAL_BINARY_SIZE[fpDigitsX];
+        return (ipDigits << 2) + DECIMAL_BINARY_SIZE[ipDigitsX] + (fpDigits << 2) + DECIMAL_BINARY_SIZE[fpDigitsX];
     }
 
     public static int toInt(byte[] data, int offset, int length) {
-        int r = 0;
+        int value = 0;
         for (int i = offset; i < (offset + length); i++) {
             final byte b = data[i];
-            r = (r << 8) | (b >= 0 ? (int) b : (b + 256));
+            value = (value << 8) | (b >= 0 ? (int) b : (b + 256));
         }
-        return r;
+        return value;
     }
 }

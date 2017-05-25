@@ -17,12 +17,12 @@
 package com.github.mysqlbinlog.model.event;
 
 
+import com.github.mysqlbinlog.model.event.extra.Pair;
+import com.github.mysqlbinlog.model.event.extra.Row;
+
 import java.util.Arrays;
 import java.util.BitSet;
 import java.util.List;
-
-import com.github.mysqlbinlog.model.event.extra.Pair;
-import com.github.mysqlbinlog.model.event.extra.Row;
 
 /**
  * UPDATE_ROWS_EVENT
@@ -49,6 +49,7 @@ public final class UpdateRowsEvent extends RowEvent {
     public int getExtraInfoLength() {
         return extraInfoLength;
     }
+    
     public void setExtraInfoLength(int extraInfoLength) {
         this.extraInfoLength = extraInfoLength;
     }
@@ -56,6 +57,7 @@ public final class UpdateRowsEvent extends RowEvent {
     public byte[] getExtraInfo() {
         return extraInfo;
     }
+    
     public void setExtraInfo(byte[] extraInfo) {
         this.extraInfo = extraInfo;
     }
@@ -63,6 +65,7 @@ public final class UpdateRowsEvent extends RowEvent {
     public long getColumnCount() {
         return columnCount;
     }
+    
     public void setColumnCount(long columnCount) {
         this.columnCount = columnCount;
     }
@@ -70,6 +73,7 @@ public final class UpdateRowsEvent extends RowEvent {
     public BitSet getUsedColumnsBefore() {
         return usedColumnsBefore;
     }
+    
     public void setUsedColumnsBefore(BitSet usedColumnsBefore) {
         this.usedColumnsBefore = usedColumnsBefore;
     }
@@ -77,6 +81,7 @@ public final class UpdateRowsEvent extends RowEvent {
     public BitSet getUsedColumnsAfter() {
         return usedColumnsAfter;
     }
+    
     public void setUsedColumnsAfter(BitSet usedColumnsAfter) {
         this.usedColumnsAfter = usedColumnsAfter;
     }
@@ -84,6 +89,7 @@ public final class UpdateRowsEvent extends RowEvent {
     public List<Pair<Row>> getRows() {
         return rows;
     }
+    
     public void setRows(List<Pair<Row>> rows) {
         this.rows = rows;
     }

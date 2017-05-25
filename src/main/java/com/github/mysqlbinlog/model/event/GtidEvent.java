@@ -35,6 +35,7 @@ public class GtidEvent extends BinlogEvent {
     public long getTransactionId() {
         return transactionId;
     }
+    
     public void setTransactionId(long transactionId) {
         this.transactionId = transactionId;
     }
@@ -42,6 +43,7 @@ public class GtidEvent extends BinlogEvent {
     public void setSourceId(byte[] sourceId) {
         this.sourceId = sourceId;
     }
+    
     public byte[] getSourceId() {
         return sourceId;
     }
@@ -49,6 +51,7 @@ public class GtidEvent extends BinlogEvent {
     public byte getFlags() {
         return flags;
     }
+    
     public void setFlags(byte flags) {
         this.flags = flags;
     }

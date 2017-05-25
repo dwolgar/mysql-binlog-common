@@ -17,11 +17,6 @@
 package com.github.mysqlbinlog.event.deserializer;
 
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.github.mysql.constant.MysqlConstants;
 import com.github.mysql.io.MysqlBinlogByteArrayInputStream;
 import com.github.mysqlbinlog.model.event.BinlogEvent;
@@ -41,6 +36,11 @@ import com.github.mysqlbinlog.model.variable.QTableMapForUpdateCode;
 import com.github.mysqlbinlog.model.variable.QTimeZoneCode;
 import com.github.mysqlbinlog.model.variable.QUpdatedDBNames;
 import com.github.mysqlbinlog.model.variable.StatusVariable;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class QueryEventDeserializer implements BinlogEventDeserializer<QueryEvent> {
 
@@ -70,7 +70,7 @@ public class QueryEventDeserializer implements BinlogEventDeserializer<QueryEven
         final MysqlBinlogByteArrayInputStream is = new MysqlBinlogByteArrayInputStream(new ByteArrayInputStream(data));
         
         boolean stop = false;
-        while(!stop && is.available() > 0) {
+        while (!stop && is.available() > 0) {
             final int type = is.readInt(1, true);
             switch (type) {
             case MysqlConstants.Q_AUTO_INCREMENT:

@@ -27,15 +27,16 @@ public class ResultSetRowResponsePacket implements ResponsePacket {
         
     }
     
-    @Override
-    public String toString() {
-        return "MysqlResultSetRowResponsePacket [values=" + values + "]";
-    }
-
     public List<String> getValues() {
         return values;
     }
+    
     public void setValues(List<String> values) {
         this.values = values;
+    }
+    
+    @Override
+    public String toString() {
+        return "MysqlResultSetRowResponsePacket [values=" + values + "]";
     }
 }

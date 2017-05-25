@@ -41,6 +41,7 @@ public final class IncidentEvent extends BinlogEvent {
     public int getIncidentNumber() {
         return incidentNumber;
     }
+    
     public void setIncidentNumber(int incidentNumber) {
         this.incidentNumber = incidentNumber;
     }
@@ -48,6 +49,7 @@ public final class IncidentEvent extends BinlogEvent {
     public int getMessageLength() {
         return messageLength;
     }
+    
     public void setMessageLength(int messageLength) {
         this.messageLength = messageLength;
     }
@@ -55,6 +57,7 @@ public final class IncidentEvent extends BinlogEvent {
     public String getMessage() {
         return message;
     }
+    
     public void setMessage(String message) {
         this.message = message;
     }

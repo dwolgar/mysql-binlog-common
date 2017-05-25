@@ -44,6 +44,7 @@ public final class FormatDescriptionEvent extends BinlogEvent {
     public int getBinlogVersion() {
         return binlogVersion;
     }
+    
     public void setBinlogVersion(int binlogVersion) {
         this.binlogVersion = binlogVersion;
     }
@@ -51,6 +52,7 @@ public final class FormatDescriptionEvent extends BinlogEvent {
     public String getServerVersion() {
         return serverVersion;
     }
+    
     public void setServerVersion(String serverVersion) {
         this.serverVersion = serverVersion;
     }
@@ -58,6 +60,7 @@ public final class FormatDescriptionEvent extends BinlogEvent {
     public long getCreateTimestamp() {
         return createTimestamp;
     }
+    
     public void setCreateTimestamp(long createTimestamp) {
         this.createTimestamp = createTimestamp;
     }
@@ -65,6 +68,7 @@ public final class FormatDescriptionEvent extends BinlogEvent {
     public int getHeaderLength() {
         return headerLength;
     }
+    
     public void setHeaderLength(int headerLength) {
         this.headerLength = headerLength;
     }
@@ -72,6 +76,7 @@ public final class FormatDescriptionEvent extends BinlogEvent {
     public byte[] getEventTypes() {
         return eventTypes;
     }
+    
     public void setEventTypes(byte[] eventTypes) {
         this.eventTypes = eventTypes;
     }

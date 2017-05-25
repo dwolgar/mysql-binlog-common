@@ -25,10 +25,12 @@ public class StringUserVariable extends UserVariable {
         this.collation = collation;
         this.value = value;
     }
+    
     @Override
     public Object getValue() {
         return value;
     }
+    
     public int getCollation() {
         return collation;
     }

@@ -16,11 +16,11 @@
 
 package com.github.mysqlbinlog.event.deserializer;
 
-import java.io.IOException;
-
 import com.github.mysql.io.MysqlBinlogByteArrayInputStream;
 import com.github.mysqlbinlog.model.event.AnonymousGtidEvent;
 import com.github.mysqlbinlog.model.event.BinlogEvent;
+
+import java.io.IOException;
 
 public class AnonymousGtidEventDeserializer implements
         BinlogEventDeserializer<AnonymousGtidEvent> {

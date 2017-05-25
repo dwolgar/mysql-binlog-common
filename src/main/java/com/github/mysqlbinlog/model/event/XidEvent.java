@@ -38,6 +38,7 @@ public final class XidEvent extends BinlogEvent {
     public long getXid() {
         return xid;
     }
+
     public void setXid(long xid) {
         this.xid = xid;
     }

@@ -48,8 +48,8 @@ public class MysqlBinlogByteArrayOutputStream extends OutputStream {
     }
 
     @Override
-    public void write(int b) throws IOException {
-        outputStream.write(b);
+    public void write(int value) throws IOException {
+        outputStream.write(value);
     }
 
     @Override

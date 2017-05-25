@@ -31,6 +31,21 @@ public class MysqlBinlogByteArrayInputStream extends InputStream {
     public MysqlBinlogByteArrayInputStream(InputStream inputStream) {
         this.inputStream = inputStream;
     }
+    
+    @Override
+    public int read() throws IOException {
+        return inputStream.read();
+    }
+
+    @Override
+    public void close() throws IOException {
+        inputStream.close();
+    }
+
+    @Override
+    public int available() throws IOException {
+        return inputStream.available();
+    }
 
     public byte[] read(int length) throws IOException {
         byte[] bytes = new byte[length];
@@ -127,21 +142,6 @@ public class MysqlBinlogByteArrayInputStream extends InputStream {
             bytes[index] = temp;
         }
         return bytes;
-    }
-
-    @Override
-    public int read() throws IOException {
-        return inputStream.read();
-    }
-
-    @Override
-    public void close() throws IOException {
-        inputStream.close();
-    }
-
-    @Override
-    public int available() throws IOException {
-        return inputStream.available();
     }
 
     public InputStream getInputStream() {

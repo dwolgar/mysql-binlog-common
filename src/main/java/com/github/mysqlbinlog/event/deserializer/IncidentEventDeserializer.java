@@ -16,11 +16,11 @@
 
 package com.github.mysqlbinlog.event.deserializer;
 
-import java.io.IOException;
-
 import com.github.mysql.io.MysqlBinlogByteArrayInputStream;
 import com.github.mysqlbinlog.model.event.BinlogEvent;
 import com.github.mysqlbinlog.model.event.IncidentEvent;
+
+import java.io.IOException;
 
 public class IncidentEventDeserializer implements BinlogEventDeserializer<IncidentEvent> {
 
@@ -28,8 +28,9 @@ public class IncidentEventDeserializer implements BinlogEventDeserializer<Incide
         
         event.setIncidentNumber(is.readInt(1, true));
         event.setMessageLength(is.readInt(1, true));
-        if (event.getMessageLength() > 0)
+        if (event.getMessageLength() > 0) {
             event.setMessage( is.readString( event.getMessageLength() ) );
+        }
         return event;
     }
 

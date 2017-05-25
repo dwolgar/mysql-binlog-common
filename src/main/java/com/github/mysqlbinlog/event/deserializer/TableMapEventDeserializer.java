@@ -18,16 +18,16 @@ package com.github.mysqlbinlog.event.deserializer;
 
 
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.util.List;
-
 import com.github.mysql.constant.MysqlConstants;
 import com.github.mysql.io.MysqlBinlogByteArrayInputStream;
 import com.github.mysqlbinlog.model.event.BinlogEvent;
 import com.github.mysqlbinlog.model.event.TableMapEvent;
 import com.github.mysqlbinlog.model.event.extra.ColumnExtraData;
 import com.github.mysqlbinlog.model.event.extra.Metadata;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.util.List;
 
 public class TableMapEventDeserializer implements BinlogEventDeserializer<TableMapEvent> {
 

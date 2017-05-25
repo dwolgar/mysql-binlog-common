@@ -41,6 +41,7 @@ public final class RotateEvent extends BinlogEvent {
     public long getBinlogPosition() {
         return binlogPosition;
     }
+    
     public void setBinlogPosition(long binlogPosition) {
         this.binlogPosition = binlogPosition;
     }
@@ -48,6 +49,7 @@ public final class RotateEvent extends BinlogEvent {
     public String getBinlogFileName() {
         return binlogFileName;
     }
+    
     public void setBinlogFileName(String binlogFileName) {
         this.binlogFileName = binlogFileName;
     }

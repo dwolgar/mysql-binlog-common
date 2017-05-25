@@ -17,8 +17,6 @@
 package com.github.mysqlbinlog.event.deserializer;
 
 
-import java.io.IOException;
-
 import com.github.mysql.constant.MysqlConstants;
 import com.github.mysql.io.MysqlBinlogByteArrayInputStream;
 import com.github.mysqlbinlog.model.event.BinlogEvent;
@@ -30,6 +28,8 @@ import com.github.mysqlbinlog.model.variable.RowUserVariable;
 import com.github.mysqlbinlog.model.variable.StringUserVariable;
 import com.github.mysqlbinlog.model.variable.UserVariable;
 
+import java.io.IOException;
+
 public class UserVarEventDeserializer implements BinlogEventDeserializer<UserVarEvent> {
 
     public BinlogEvent deserialize(UserVarEvent event, MysqlBinlogByteArrayInputStream is, BinlogDeserializerContext context) throws IOException {
@@ -38,14 +38,14 @@ public class UserVarEventDeserializer implements BinlogEventDeserializer<UserVar
         event.setVarName(is.readString(varNameLength));
         event.setIsNull(is.readInt(1, true));
         if (event.getIsNull() == 0) {
-          event.setVarType(is.readInt(1, true));
-          event.setVarCollation(is.readInt(4, true));
-          event.setVarValueLength(is.readInt(4, true));
-          event.setVarValue(parseUserVariable(is, event));
+            event.setVarType(is.readInt(1, true));
+            event.setVarCollation(is.readInt(4, true));
+            event.setVarValueLength(is.readInt(4, true));
+            event.setVarValue(parseUserVariable(is, event));
         }
         return event;
     }
-    
+
     protected static UserVariable parseUserVariable(MysqlBinlogByteArrayInputStream is, UserVarEvent event) throws IOException {
         final int type = event.getVarType();
         switch (type) {

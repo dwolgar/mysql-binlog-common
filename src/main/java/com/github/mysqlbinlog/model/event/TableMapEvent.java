@@ -17,12 +17,12 @@
 package com.github.mysqlbinlog.model.event;
 
 
+import com.github.mysqlbinlog.model.event.extra.ColumnExtraData;
+import com.github.mysqlbinlog.model.event.extra.Metadata;
+
 import java.util.Arrays;
 import java.util.BitSet;
 import java.util.List;
-
-import com.github.mysqlbinlog.model.event.extra.ColumnExtraData;
-import com.github.mysqlbinlog.model.event.extra.Metadata;
 
 /*
  * TABLE_MAP_EVENT
@@ -57,6 +57,7 @@ public final class TableMapEvent extends BinlogEvent {
     public long getTableId() {
         return tableId;
     }
+    
     public void setTableId(long tableId) {
         this.tableId = tableId;
     }
@@ -64,6 +65,7 @@ public final class TableMapEvent extends BinlogEvent {
     public int getReserved() {
         return reserved;
     }
+    
     public void setReserved(int reserved) {
         this.reserved = reserved;
     }
@@ -71,6 +73,7 @@ public final class TableMapEvent extends BinlogEvent {
     public String getDatabaseName() {
         return databaseName;
     }
+    
     public void setDatabaseName(String databaseName) {
         this.databaseName = databaseName;
     }
@@ -78,6 +81,7 @@ public final class TableMapEvent extends BinlogEvent {
     public String getTableName() {
         return tableName;
     }
+    
     public void setTableName(String tableName) {
         this.tableName = tableName;
     }
@@ -85,6 +89,7 @@ public final class TableMapEvent extends BinlogEvent {
     public long getColumnCount() {
         return columnCount;
     }
+    
     public void setColumnCount(long columnCount) {
         this.columnCount = columnCount;
     }
@@ -92,6 +97,7 @@ public final class TableMapEvent extends BinlogEvent {
     public byte[] getColumnTypes() {
         return columnTypes;
     }
+    
     public void setColumnTypes(byte[] columnTypes) {
         this.columnTypes = columnTypes;
     }
@@ -99,6 +105,7 @@ public final class TableMapEvent extends BinlogEvent {
     public long getColumnMetadataCount() {
         return columnMetadataCount;
     }
+    
     public void setColumnMetadataCount(long columnMetadataCount) {
         this.columnMetadataCount = columnMetadataCount;
     }
@@ -106,6 +113,7 @@ public final class TableMapEvent extends BinlogEvent {
     public Metadata getColumnMetadata() {
         return columnMetadata;
     }
+    
     public void setColumnMetadata(Metadata columnMetadata) {
         this.columnMetadata = columnMetadata;
     }
@@ -113,6 +121,7 @@ public final class TableMapEvent extends BinlogEvent {
     public BitSet getColumnNullabilities() {
         return columnNullabilities;
     }
+    
     public void setColumnNullabilities(BitSet columnNullabilities) {
         this.columnNullabilities = columnNullabilities;
     }
@@ -120,6 +129,7 @@ public final class TableMapEvent extends BinlogEvent {
     public List<ColumnExtraData> getColumnExtra() {
         return columnExtra;
     }
+    
     public void setColumnExtra(List<ColumnExtraData> columnExtra) {
         this.columnExtra = columnExtra;
     }

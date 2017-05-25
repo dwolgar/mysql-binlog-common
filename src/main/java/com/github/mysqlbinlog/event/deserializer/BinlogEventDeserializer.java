@@ -16,10 +16,10 @@
 
 package com.github.mysqlbinlog.event.deserializer;
 
-import java.io.IOException;
-
 import com.github.mysql.io.MysqlBinlogByteArrayInputStream;
 import com.github.mysqlbinlog.model.event.BinlogEvent;
+
+import java.io.IOException;
 
 public interface BinlogEventDeserializer<E extends BinlogEvent> {
     public BinlogEvent deserialize(E event, MysqlBinlogByteArrayInputStream is, BinlogDeserializerContext context)  throws IOException;

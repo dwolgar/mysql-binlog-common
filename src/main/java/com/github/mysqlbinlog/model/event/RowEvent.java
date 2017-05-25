@@ -34,6 +34,7 @@ public abstract class RowEvent extends BinlogEvent {
     public long getTableId() {
         return tableId;
     }
+    
     public void setTableId(long tableId) {
         this.tableId = tableId;
     }
@@ -41,6 +42,7 @@ public abstract class RowEvent extends BinlogEvent {
     public int getReserved() {
         return reserved;
     }
+    
     public void setReserved(int reserved) {
         this.reserved = reserved;
     }
@@ -48,6 +50,7 @@ public abstract class RowEvent extends BinlogEvent {
     public String getDatabaseName() {
         return databaseName;
     }
+    
     public void setDatabaseName(String databaseName) {
         this.databaseName = databaseName;
     }
@@ -55,6 +58,7 @@ public abstract class RowEvent extends BinlogEvent {
     public String getTableName() {
         return tableName;
     }
+    
     public void setTableName(String tableName) {
         this.tableName = tableName;
     }

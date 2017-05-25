@@ -30,11 +30,9 @@ public class ColumnExtraData implements Serializable {
         
         if (columnType.startsWith("enum")) {
             this.valueSet = columnType.substring(6, columnType.length() - 2).split("','");
-        }
-        else if (columnType.startsWith("set")) {
+        } else if (columnType.startsWith("set")) {
             this.valueSet = columnType.substring(5, columnType.length() - 2).split("','");
-        }
-        else {
+        } else {
             valueSet = null;
         }
     }

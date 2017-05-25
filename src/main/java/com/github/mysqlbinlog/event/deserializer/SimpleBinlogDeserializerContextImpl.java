@@ -17,13 +17,13 @@
 package com.github.mysqlbinlog.event.deserializer;
 
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import com.github.mysqlbinlog.event.checksum.MysqlChecksum;
 import com.github.mysqlbinlog.model.event.TableMapEvent;
 import com.github.mysqlbinlog.model.event.extra.ColumnExtraData;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class SimpleBinlogDeserializerContextImpl implements BinlogDeserializerContext {
     private final Map<Long, TableMapEvent> tableMapEvents;
