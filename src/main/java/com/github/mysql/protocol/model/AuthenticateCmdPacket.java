@@ -16,12 +16,12 @@
 
 package com.github.mysql.protocol.model;
 
+import com.github.mysql.constant.MysqlConstants;
+import com.github.mysql.io.MysqlBinlogByteArrayOutputStream;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.security.MessageDigest;
-
-import com.github.mysql.constant.MysqlConstants;
-import com.github.mysql.io.MysqlBinlogByteArrayOutputStream;
 
 public class AuthenticateCmdPacket implements CmdPacket {
     public static String DEFAULT_ENCODING = "utf-8";
@@ -34,21 +34,25 @@ public class AuthenticateCmdPacket implements CmdPacket {
     private final int clientCapabilities;
     private final int collation;
     
-    public AuthenticateCmdPacket(String schema, String username, String password, String encoding, String salt, int clientCapabilities, int collation) {
+    public AuthenticateCmdPacket(String schema, String username, String password, String encoding, String salt, 
+            int clientCapabilities, int collation) {
         this.schema   = schema;
         this.username = username;
         this.password = password;
         this.encoding = (encoding == null || encoding.length() == 0 ? AuthenticateCmdPacket.DEFAULT_ENCODING : encoding);
         this.salt = salt;
         if (clientCapabilities == 0) {
-            int newClientCapabilities = MysqlConstants.CLIENT_LONG_PASSWORD | MysqlConstants.CLIENT_PROTOCOL_41 | MysqlConstants.CLIENT_SECURE_CONNECTION;
-            if (schema != null) 
+            int newClientCapabilities = MysqlConstants.CLIENT_LONG_PASSWORD
+                                      | MysqlConstants.CLIENT_PROTOCOL_41
+                                      | MysqlConstants.CLIENT_SECURE_CONNECTION;
+            if (schema != null) {
                 newClientCapabilities |= MysqlConstants.CLIENT_CONNECT_WITH_DB;
+            }
 
             this.clientCapabilities = newClientCapabilities;
-        }
-        else 
+        } else {
             this.clientCapabilities = clientCapabilities;
+        }
         
         this.collation = collation;
     }
@@ -94,8 +98,9 @@ public class AuthenticateCmdPacket implements CmdPacket {
         os.writeInteger(this.clientCapabilities, 4);
         os.writeInteger(0, 4);
         os.writeInteger(this.collation, 1);
-        for (int i = 0; i < 23; i++)
+        for (int i = 0; i < 23; i++) {
             os.write(0);
+        }
         os.write(this.username.getBytes(this.encoding));
         os.write(0);
     

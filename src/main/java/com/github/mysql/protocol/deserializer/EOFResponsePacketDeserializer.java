@@ -31,8 +31,7 @@ public class EOFResponsePacketDeserializer implements ResponsePacketDeserializer
             packet.setWarningCount(is.readInt(2, true));
             packet.setServerStatus(is.readInt(2, true));
             return packet;
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
 

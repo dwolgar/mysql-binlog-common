@@ -34,8 +34,7 @@ public class ErrorResponsePacketDeserializer implements ResponsePacketDeserializ
             packet.setErrorMessage(is.readString(is.available()));
 
             return packet;
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
 

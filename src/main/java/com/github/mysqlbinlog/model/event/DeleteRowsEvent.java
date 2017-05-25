@@ -47,6 +47,7 @@ public final class DeleteRowsEvent extends RowEvent {
     public int getExtraInfoLength() {
         return extraInfoLength;
     }
+    
     public void setExtraInfoLength(int extraInfoLength) {
         this.extraInfoLength = extraInfoLength;
     }
@@ -54,6 +55,7 @@ public final class DeleteRowsEvent extends RowEvent {
     public byte[] getExtraInfo() {
         return extraInfo;
     }
+    
     public void setExtraInfo(byte[] extraInfo) {
         this.extraInfo = extraInfo;
     }
@@ -61,6 +63,7 @@ public final class DeleteRowsEvent extends RowEvent {
     public long getColumnCount() {
         return columnCount;
     }
+    
     public void setColumnCount(long columnCount) {
         this.columnCount = columnCount;
     }
@@ -68,6 +71,7 @@ public final class DeleteRowsEvent extends RowEvent {
     public BitSet getUsedColumns() {
         return usedColumns;
     }
+    
     public void setUsedColumns(BitSet usedColumns) {
         this.usedColumns = usedColumns;
     }
@@ -75,6 +79,7 @@ public final class DeleteRowsEvent extends RowEvent {
     public List<Row> getRows() {
         return rows;
     }
+    
     public void setRows(List<Row> rows) {
         this.rows = rows;
     }

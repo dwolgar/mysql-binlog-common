@@ -17,12 +17,13 @@
 package com.github.mysql.protocol.deserializer;
 
 
-import java.util.LinkedList;
-import java.util.List;
-
 import com.github.mysql.io.MysqlBinlogByteArrayInputStream;
 import com.github.mysql.protocol.model.ResponsePacket;
 import com.github.mysql.protocol.model.ResultSetRowResponsePacket;
+
+import java.util.LinkedList;
+import java.util.List;
+
 
 
 public class ResultSetRowResponsePacketDeserializer implements ResponsePacketDeserializer {
@@ -39,8 +40,7 @@ public class ResultSetRowResponsePacketDeserializer implements ResponsePacketDes
             packet.setValues(list);
 
             return packet;
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
 

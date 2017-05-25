@@ -38,6 +38,7 @@ public class BinlogEventHeader implements Serializable {
     public long getTimestamp() {
         return timestamp;
     }
+    
     public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
     }
@@ -45,6 +46,7 @@ public class BinlogEventHeader implements Serializable {
     public int getEventType() {
         return eventType;
     }
+    
     public void setEventType(int eventType) {
         this.eventType = eventType;
     }
@@ -52,6 +54,7 @@ public class BinlogEventHeader implements Serializable {
     public long getServerId() {
         return serverId;
     }
+    
     public void setServerId(long serverId) {
         this.serverId = serverId;
     }
@@ -59,6 +62,7 @@ public class BinlogEventHeader implements Serializable {
     public long getEventLength() {
         return eventLength;
     }
+    
     public void setEventLength(long eventLength) {
         this.eventLength = eventLength;
     }
@@ -66,6 +70,7 @@ public class BinlogEventHeader implements Serializable {
     public long getNextPosition() {
         return nextPosition;
     }
+    
     public void setNextPosition(long nextPosition) {
         this.nextPosition = nextPosition;
     }
@@ -73,6 +78,7 @@ public class BinlogEventHeader implements Serializable {
     public int getFlags() {
         return flags;
     }
+    
     public void setFlags(int flags) {
         this.flags = flags;
     }

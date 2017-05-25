@@ -23,6 +23,7 @@ import com.github.mysql.protocol.model.ResponsePacket;
 
 public class OKResponsePacketDeserializer implements ResponsePacketDeserializer {
 
+    @SuppressWarnings("unused")
     @Override
     public ResponsePacket deserialize(MysqlBinlogByteArrayInputStream is) {
         try {
@@ -33,11 +34,11 @@ public class OKResponsePacketDeserializer implements ResponsePacketDeserializer 
             packet.setInsertId(is.readMysqlPackedNumber().longValue());
             packet.setServerStatus(is.readInt(2, true));
             packet.setWarningCount(is.readInt(2, true));
-            if (is.available() > 0) 
+            if (is.available() > 0) {
                 packet.setMessage(is.readString(is.available()));
+            }
             return packet;
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
 

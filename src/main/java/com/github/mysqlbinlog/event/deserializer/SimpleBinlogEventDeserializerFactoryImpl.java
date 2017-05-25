@@ -24,7 +24,7 @@ import com.github.mysqlbinlog.model.event.BinlogEventHeader;
 
 @SuppressWarnings({ "rawtypes", "serial" })
 public class SimpleBinlogEventDeserializerFactoryImpl implements BinlogEventDeserializerFactory {
-    
+    private static final BinlogEventDeserializer<?> rawEventDeserializer = new RawBinglogEventDeserializer();
     private Map<Integer, BinlogEventDeserializer> deserializers;
 
     public SimpleBinlogEventDeserializerFactoryImpl() {
@@ -49,6 +49,7 @@ public class SimpleBinlogEventDeserializerFactoryImpl implements BinlogEventDese
             put(MysqlConstants.DELETE_ROWS_EVENT_V2, new DeleteRowsEventDeserializer(true));
             put(MysqlConstants.GTID_LOG_EVENT, new GtidEventDeserializer());
             put(MysqlConstants.STOP_EVENT, new StopEventDeserializer());
+            put(MysqlConstants.PREVIOUS_GTIDS_LOG_EVENT, new PreviousGtidsEventDeserializer());
         }};
     }
 
@@ -57,7 +58,10 @@ public class SimpleBinlogEventDeserializerFactoryImpl implements BinlogEventDese
         if (this.deserializers == null) {
             createDefaultDeserializers();
         }
-        return deserializers.get(eventHeader.getEventType());
+        
+        BinlogEventDeserializer<?> deserializer = deserializers.get(eventHeader.getEventType());
+
+        return deserializer == null ? SimpleBinlogEventDeserializerFactoryImpl.rawEventDeserializer : deserializer;
     }
 
 }

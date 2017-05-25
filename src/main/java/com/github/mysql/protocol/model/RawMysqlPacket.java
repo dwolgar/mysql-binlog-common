@@ -47,6 +47,13 @@ public class RawMysqlPacket implements ResponsePacket {
         return ((ByteArrayOutputStream)(os.getOutputStream())).toByteArray();
     }
     
+    public boolean isEmpty() {
+        if (this.getRawBody() == null) {
+            return true;
+        }
+        return false;
+    }
+    
     public boolean isErrorPacket() {
         if (this.getRawBody()[0] == ErrorResponsePacket.HEADER) {
             return true;
@@ -72,7 +79,7 @@ public class RawMysqlPacket implements ResponsePacket {
     @Override
     public String toString() {
         return "MysqlRawResponsePacket [length=" + length + ", sequence="
-                + sequence + ", raw body=" + DatatypeConverter.printHexBinary(this.rawBody) + "]";
+                + sequence + ", raw body=" + (this.rawBody == null ? "NULL" : DatatypeConverter.printHexBinary(this.rawBody)) + "]";
     }
 
     public int getLength() {

@@ -35,6 +35,7 @@ public abstract class BinlogEvent implements Serializable {
     public BinlogEventHeader getHeader() {
         return header;
     }
+    
     public void setHeader(BinlogEventHeader header) {
         this.header = header;
     }
@@ -42,6 +43,7 @@ public abstract class BinlogEvent implements Serializable {
     public byte[] getRawData() {
         return rawData;
     }
+    
     public void setRawData(byte[] rawData) {
         this.rawData = rawData;
     }

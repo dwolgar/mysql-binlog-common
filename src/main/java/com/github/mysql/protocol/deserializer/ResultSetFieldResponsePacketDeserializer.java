@@ -46,8 +46,7 @@ public class ResultSetFieldResponsePacketDeserializer implements ResponsePacketD
             }
 
             return packet;
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
 

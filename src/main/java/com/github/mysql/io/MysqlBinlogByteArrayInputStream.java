@@ -75,20 +75,20 @@ public class MysqlBinlogByteArrayInputStream extends InputStream {
     }
 
     public Number readMysqlPackedNumber() throws IOException {
-        int b = this.read();
-        if (b < 251) {
-            return b;
-        } else if (b == 251) {
+        int value = this.read();
+        if (value < 251) {
+            return value;
+        } else if (value == 251) {
             return null;
-        } else if (b == 252) {
+        } else if (value == 252) {
             return (long) readInt(2, true);
-        } else if (b == 253) {
+        } else if (value == 253) {
             return (long) readInt(3, true);
-        } else if (b == 254) {
+        } else if (value == 254) {
             return readLong(8, true);
         }
 
-        throw new IOException("Unexpected value [" + b + "]");
+        throw new IOException("Unexpected value [" + value + "]");
     }
 
     public String readString(int length) throws IOException {
@@ -100,11 +100,11 @@ public class MysqlBinlogByteArrayInputStream extends InputStream {
     }
 
     public String readNullTerminatedString() throws IOException {
-        ByteArrayOutputStream s = new ByteArrayOutputStream();
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
         for (int b; (b = this.read()) != 0;) {
-            s.write(b);
+            out.write(b);
         }
-        return new String(s.toByteArray());
+        return new String(out.toByteArray());
     }
 
     public BitSet readBitSet(int length, boolean bigEndian) throws IOException {
@@ -121,10 +121,10 @@ public class MysqlBinlogByteArrayInputStream extends InputStream {
 
     private byte[] reverse(byte[] bytes) {
         for (int i = 0, length = bytes.length >> 1; i < length; i++) {
-            int j = bytes.length - 1 - i;
-            byte t = bytes[i];
-            bytes[i] = bytes[j];
-            bytes[j] = t;
+            int index = bytes.length - 1 - i;
+            byte temp = bytes[i];
+            bytes[i] = bytes[index];
+            bytes[index] = temp;
         }
         return bytes;
     }
@@ -147,6 +147,7 @@ public class MysqlBinlogByteArrayInputStream extends InputStream {
     public InputStream getInputStream() {
         return inputStream;
     }
+    
     public void setInputStream(InputStream inputStream) {
         this.inputStream = inputStream;
     }

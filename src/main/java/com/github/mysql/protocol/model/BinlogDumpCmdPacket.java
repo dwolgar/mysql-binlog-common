@@ -16,11 +16,11 @@
 
 package com.github.mysql.protocol.model;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-
 import com.github.mysql.constant.MysqlConstants;
 import com.github.mysql.io.MysqlBinlogByteArrayOutputStream;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 public class BinlogDumpCmdPacket implements CmdPacket {
     private final long serverId;

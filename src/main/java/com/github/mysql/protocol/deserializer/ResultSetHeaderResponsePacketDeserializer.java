@@ -29,12 +29,12 @@ public class ResultSetHeaderResponsePacketDeserializer implements ResponsePacket
             ResultSetHeaderResponsePacket packet = new ResultSetHeaderResponsePacket();
 
             packet.setFieldCount(is.readMysqlPackedNumber().longValue());
-            if (is.available() > 0) 
+            if (is.available() > 0) {
                 packet.setExtra(is.readMysqlPackedNumber().longValue());
+            }
             return packet;
 
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
 

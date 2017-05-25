@@ -17,6 +17,7 @@
 package com.github.mysqlbinlog.event.deserializer;
 
 import com.github.mysql.constant.MysqlConstants;
+import com.github.mysqlbinlog.model.event.AnonymousGtidEvent;
 import com.github.mysqlbinlog.model.event.BinlogEvent;
 import com.github.mysqlbinlog.model.event.BinlogEventHeader;
 import com.github.mysqlbinlog.model.event.DeleteRowsEvent;
@@ -24,6 +25,7 @@ import com.github.mysqlbinlog.model.event.FormatDescriptionEvent;
 import com.github.mysqlbinlog.model.event.GtidEvent;
 import com.github.mysqlbinlog.model.event.IncidentEvent;
 import com.github.mysqlbinlog.model.event.IntvarEvent;
+import com.github.mysqlbinlog.model.event.PreviousGtidsEvent;
 import com.github.mysqlbinlog.model.event.QueryEvent;
 import com.github.mysqlbinlog.model.event.RandEvent;
 import com.github.mysqlbinlog.model.event.RawBinglogEvent;
@@ -92,6 +94,12 @@ public class SimpleBinlogEventFactoryImpl implements BinlogEventFactory {
         case MysqlConstants.STOP_EVENT:
             event = new StopEvent(eventHeader, rawData);
             break;
+        case MysqlConstants.ANONYMOUS_GTID_LOG_EVENT:
+            event = new AnonymousGtidEvent(eventHeader, rawData);
+            break;
+        case MysqlConstants.PREVIOUS_GTIDS_LOG_EVENT:
+            event = new PreviousGtidsEvent(eventHeader, rawData);
+            break;
 
         case MysqlConstants.HEARTBEAT_LOG_EVENT:
         case MysqlConstants.UNKNOWN_EVENT:
@@ -110,8 +118,6 @@ public class SimpleBinlogEventFactoryImpl implements BinlogEventFactory {
         case MysqlConstants.PRE_GA_DELETE_ROWS_EVENT:
         case MysqlConstants.IGNORABLE_LOG_EVENT:
         case MysqlConstants.ROWS_QUERY_LOG_EVENT:
-        case MysqlConstants.ANONYMOUS_GTID_LOG_EVENT:
-        case MysqlConstants.PREVIOUS_GTIDS_LOG_EVENT:
         default:
             event = new RawBinglogEvent(eventHeader, rawData);
 

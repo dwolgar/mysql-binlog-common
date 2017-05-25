@@ -40,8 +40,7 @@ public class RawResponsePacketDeserializer implements ResponsePacketDeserializer
             packet.setRawBody(body);
             
             return packet;
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
     }
