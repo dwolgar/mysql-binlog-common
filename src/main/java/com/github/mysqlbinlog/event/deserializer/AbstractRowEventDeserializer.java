@@ -144,7 +144,9 @@ public abstract class AbstractRowEventDeserializer<E extends BinlogEvent> implem
                 String stringValue = null;
                 if (columnMetaData != null) {
                     String[] valueSet = columnMetaData.getValueSet();
-                    stringValue = (valueSet == null ? null : valueSet[value - 1]);
+                    if (valueSet != null) {
+                        stringValue = (value == 0 ? "" : valueSet[value - 1]);
+                    }
                 }
                 columns.add(new EnumColumn(columnName, type, value, stringValue));
             }  break;
@@ -153,7 +155,16 @@ public abstract class AbstractRowEventDeserializer<E extends BinlogEvent> implem
                 String stringValue = null;
                 if (columnMetaData != null) {
                     String[] valueSet = columnMetaData.getValueSet();
-                    stringValue = (valueSet == null ? null : valueSet[(int)value - 1]);
+                    List<String> maskedValues = new ArrayList<String>();
+                    if (valueSet != null) {
+                        for (int bits = 0; bits< valueSet.length; bits++) {
+                            long binValue = ((long)0x01) << bits;
+                            if ((binValue & value) > 0) {
+                                maskedValues.add(valueSet[bits]);
+                            }
+                        }
+                        stringValue = String.join(",", maskedValues);
+                    }
                 }
                 columns.add(new SetColumn(columnName, type, value, stringValue));
             }   break;
