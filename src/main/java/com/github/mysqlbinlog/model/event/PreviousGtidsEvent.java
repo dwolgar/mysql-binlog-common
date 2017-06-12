@@ -28,4 +28,10 @@ public class PreviousGtidsEvent extends BinlogEvent {
     public PreviousGtidsEvent(BinlogEventHeader header, byte[] rawData) {
         super(header, rawData);
     }
+    
+    @Override
+    public String toString() {
+        return "PreviousGtidsEvent []";
+    }
+
 }

@@ -16,6 +16,8 @@
 
 package com.github.mysql.constant;
 
+import java.util.Hashtable;
+
 public final class MysqlConstants {
     public static final byte[] BINLOG_MAGIC = new byte[] {(byte) 0xfe, (byte) 0x62, (byte) 0x69, (byte) 0x6e};
 
@@ -137,6 +139,14 @@ public final class MysqlConstants {
     public static final int TYPE_VAR_STRING = 253;
     public static final int TYPE_STRING = 254;
     public static final int TYPE_GEOMETRY = 255;
+    
+    
+    //OPTIONS_WRITTEN_TO_BIN_LOG
+    public static final int OPTION_AUTO_IS_NULL                 = 0x00004000; //1 << 14;
+    public static final int OPTION_NOT_AUTOCOMMIT               = 0x00080000; //1 << 19;
+    public static final int OPTION_NO_FOREIGN_KEY_CHECKS        = 0x04000000; //1 << 26;
+    public static final int OPTION_RELAXED_UNIQUE_CHECKS        = 0x08000000; //1 << 27;
+
 
     // SQL modes
     public static final long SM_LREAL_AS_FLOATL = 0x1L;
@@ -171,6 +181,46 @@ public final class MysqlConstants {
     public static final long SM_LHIGH_NOT_PRECEDENCEL = 0x20000000L;
     public static final long SM_LNO_ENGINE_SUBSTITUTIONL = 0x40000000L;
     public static final long SM_LPAD_CHAR_TO_FULL_LENGTHL = 0x80000000L;
+    
+    // sql modes as string
+    public static final Hashtable<Long, String> sqlModes = new Hashtable<Long, String>();
+
+    static
+    {
+        sqlModes.put(Long.valueOf(SM_LREAL_AS_FLOATL), "REAL_AS_FLOAT");
+        sqlModes.put(Long.valueOf(SM_LPIPES_AS_CONCATL), "PIPES_AS_CONCAT");
+        sqlModes.put(Long.valueOf(SM_LANSI_QUOTESL), "ANSI_QUOTES");
+        sqlModes.put(Long.valueOf(SM_LIGNORE_SPACEL), "IGNORE_SPACE");
+        sqlModes.put(Long.valueOf(SM_LNOT_USEDL), "NOT_USED");
+        sqlModes.put(Long.valueOf(SM_LONLY_FULL_GROUP_BYL), "ONLY_FULL_GROUP_BY");
+        sqlModes.put(Long.valueOf(SM_LNO_UNSIGNED_SUBTRACTIONL), "NO_UNSIGNED_SUBTRACTION");
+        sqlModes.put(Long.valueOf(SM_LNO_DIR_IN_CREATEL), "NO_DIR_IN_CREATE");
+        sqlModes.put(Long.valueOf(SM_LPOSTGRESQLL), "POSTGRESQL");
+        sqlModes.put(Long.valueOf(SM_LORACLEL), "ORACLE");
+        sqlModes.put(Long.valueOf(SM_LMSSQLL), "MSSQL");
+        sqlModes.put(Long.valueOf(SM_LDB2L), "DB2");
+        sqlModes.put(Long.valueOf(SM_LMAXDBL), "MAXDB");
+        sqlModes.put(Long.valueOf(SM_LNO_KEY_OPTIONSL), "NO_KEY_OPTIONS");
+        sqlModes.put(Long.valueOf(SM_LNO_TABLE_OPTIONSL), "NO_TABLE_OPTIONS");
+        sqlModes.put(Long.valueOf(SM_LNO_FIELD_OPTIONSL), "NO_FIELD_OPTIONS");
+        sqlModes.put(Long.valueOf(SM_LMYSQL323L), "MYSQL323");
+        sqlModes.put(Long.valueOf(SM_LMYSQL40L), "MYSQL40");
+        sqlModes.put(Long.valueOf(SM_LANSIL), "ANSI");
+        sqlModes.put(Long.valueOf(SM_LNO_AUTO_VALUE_ON_ZEROL), "NO_AUTO_VALUE_ON_ZERO");
+        sqlModes.put(Long.valueOf(SM_LNO_BACKSLASH_ESCAPESL), "NO_BACKSLASH_ESCAPES");
+        sqlModes.put(Long.valueOf(SM_LSTRICT_TRANS_TABLESL), "STRICT_TRANS_TABLES");
+        sqlModes.put(Long.valueOf(SM_LSTRICT_ALL_TABLESL), "STRICT_ALL_TABLES");
+        sqlModes.put(Long.valueOf(SM_LNO_ZERO_IN_DATEL), "NO_ZERO_IN_DATE");
+        sqlModes.put(Long.valueOf(SM_LNO_ZERO_DATEL), "NO_ZERO_DATE");
+        sqlModes.put(Long.valueOf(SM_LINVALID_DATESL), "INVALID_DATES");
+        sqlModes.put(Long.valueOf(SM_LERROR_FOR_DIVISION_BY_ZEROL), "ERROR_FOR_DIVISION_BY_ZERO");
+        sqlModes.put(Long.valueOf(SM_LTRADITIONALL), "TRADITIONAL");
+        sqlModes.put(Long.valueOf(SM_LNO_AUTO_CREATE_USERL), "NO_AUTO_CREATE_USER");
+        sqlModes.put(Long.valueOf(SM_LHIGH_NOT_PRECEDENCEL), "HIGH_NOT_PRECEDENCE");
+        sqlModes.put(Long.valueOf(SM_LNO_ENGINE_SUBSTITUTIONL), "MODE_NO_ENGINE_SUBSTITUTION");
+        sqlModes.put(Long.valueOf(SM_LPAD_CHAR_TO_FULL_LENGTHL), "PAD_CHAR_TO_FULL_LENGTH");
+    }
+
 
     // event types
     public static final int UNKNOWN_EVENT = 0;

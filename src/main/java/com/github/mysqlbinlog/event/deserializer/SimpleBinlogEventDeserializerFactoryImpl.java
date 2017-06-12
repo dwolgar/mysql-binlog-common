@@ -51,6 +51,7 @@ public class SimpleBinlogEventDeserializerFactoryImpl implements BinlogEventDese
                 put(MysqlConstants.GTID_LOG_EVENT, new GtidEventDeserializer());
                 put(MysqlConstants.STOP_EVENT, new StopEventDeserializer());
                 put(MysqlConstants.PREVIOUS_GTIDS_LOG_EVENT, new PreviousGtidsEventDeserializer());
+                put(MysqlConstants.ANONYMOUS_GTID_LOG_EVENT, new AnonymousGtidEventDeserializer());
             } 
         };
     }

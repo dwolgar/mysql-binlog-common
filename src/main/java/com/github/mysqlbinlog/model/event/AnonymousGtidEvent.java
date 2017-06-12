@@ -27,5 +27,9 @@ public class AnonymousGtidEvent extends BinlogEvent {
     public AnonymousGtidEvent(BinlogEventHeader header, byte[] rawData) {
         super(header, rawData);
     }
-
+    
+    @Override
+    public String toString() {
+        return "AnonymousGtidEvent []";
+    }
 }
