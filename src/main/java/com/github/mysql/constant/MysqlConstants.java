@@ -212,12 +212,12 @@ public final class MysqlConstants {
         sqlModes.put(Long.valueOf(SM_LSTRICT_ALL_TABLESL), "STRICT_ALL_TABLES");
         sqlModes.put(Long.valueOf(SM_LNO_ZERO_IN_DATEL), "NO_ZERO_IN_DATE");
         sqlModes.put(Long.valueOf(SM_LNO_ZERO_DATEL), "NO_ZERO_DATE");
-        sqlModes.put(Long.valueOf(SM_LINVALID_DATESL), "INVALID_DATES");
+        sqlModes.put(Long.valueOf(SM_LINVALID_DATESL), "ALLOW_INVALID_DATES");
         sqlModes.put(Long.valueOf(SM_LERROR_FOR_DIVISION_BY_ZEROL), "ERROR_FOR_DIVISION_BY_ZERO");
         sqlModes.put(Long.valueOf(SM_LTRADITIONALL), "TRADITIONAL");
         sqlModes.put(Long.valueOf(SM_LNO_AUTO_CREATE_USERL), "NO_AUTO_CREATE_USER");
         sqlModes.put(Long.valueOf(SM_LHIGH_NOT_PRECEDENCEL), "HIGH_NOT_PRECEDENCE");
-        sqlModes.put(Long.valueOf(SM_LNO_ENGINE_SUBSTITUTIONL), "MODE_NO_ENGINE_SUBSTITUTION");
+        sqlModes.put(Long.valueOf(SM_LNO_ENGINE_SUBSTITUTIONL), "NO_ENGINE_SUBSTITUTION");
         sqlModes.put(Long.valueOf(SM_LPAD_CHAR_TO_FULL_LENGTHL), "PAD_CHAR_TO_FULL_LENGTH");
     }
 
