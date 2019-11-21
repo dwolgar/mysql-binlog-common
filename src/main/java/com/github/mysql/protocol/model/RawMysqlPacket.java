@@ -35,6 +35,12 @@ public class RawMysqlPacket implements ResponsePacket {
         
     }
     
+    public RawMysqlPacket(int length, int sequence, byte[] rawBody) {
+        this.length = length;
+        this.sequence = sequence;
+        this.rawBody = rawBody;
+    }
+    
     public byte[] getFullBody() throws IOException {
         MysqlBinlogByteArrayOutputStream os = new MysqlBinlogByteArrayOutputStream(new ByteArrayOutputStream());
         
