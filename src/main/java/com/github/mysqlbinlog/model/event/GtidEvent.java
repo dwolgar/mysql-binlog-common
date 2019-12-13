@@ -16,14 +16,25 @@
 
 package com.github.mysqlbinlog.model.event;
 
-import java.util.Arrays;
+import javax.xml.bind.DatatypeConverter;
+
+import com.github.mysql.utils.MysqlUtils;
 
 public class GtidEvent extends BinlogEvent {
     private static final long serialVersionUID = 1665195309515506304L;
-    private byte flags;
+
+    private int flags;
     private byte[] sourceId;
     private long transactionId;
-
+    private int logicalCockTimestampTypeCode;
+    private long lastCommited;
+    private long sequenceNumber;
+    private long immidiateCommitTimestamp;
+    private long originalCommitTimestamp;
+    private long transactionLength;
+    private int immidiateServerVersion;
+    private int originalServerVersion;
+    
     public GtidEvent() {
         
     }
@@ -32,34 +43,108 @@ public class GtidEvent extends BinlogEvent {
         super(header, rawData);
     }
 
-    public long getTransactionId() {
-        return transactionId;
-    }
-    
-    public void setTransactionId(long transactionId) {
-        this.transactionId = transactionId;
+    public int getFlags() {
+        return flags;
     }
 
-    public void setSourceId(byte[] sourceId) {
-        this.sourceId = sourceId;
+    public void setFlags(int flags) {
+        this.flags = flags;
     }
-    
+
     public byte[] getSourceId() {
         return sourceId;
     }
 
-    public byte getFlags() {
-        return flags;
+    public void setSourceId(byte[] sid) {
+        this.sourceId = sid;
     }
-    
-    public void setFlags(byte flags) {
-        this.flags = flags;
+
+    public long getTransactionId() {
+        return transactionId;
     }
-    
+
+    public void setTransactionId(long transactionId) {
+        this.transactionId = transactionId;
+    }
+
+    public int getLogicalCockTimestampTypeCode() {
+        return logicalCockTimestampTypeCode;
+    }
+
+    public void setLogicalCockTimestampTypeCode(int logicalCockTimestampTypeCode) {
+        this.logicalCockTimestampTypeCode = logicalCockTimestampTypeCode;
+    }
+
+    public long getLastCommited() {
+        return lastCommited;
+    }
+
+    public void setLastCommited(long lastCommited) {
+        this.lastCommited = lastCommited;
+    }
+
+
+    public long getSequenceNumber() {
+        return sequenceNumber;
+    }
+
+    public void setSequenceNumber(long sequenceNumber) {
+        this.sequenceNumber = sequenceNumber;
+    }
+
+    public long getImmidiateCommitTimestamp() {
+        return immidiateCommitTimestamp;
+    }
+
+    public void setImmidiateCommitTimestamp(long immidiateCommitTimestamp) {
+        this.immidiateCommitTimestamp = immidiateCommitTimestamp;
+    }
+
+    public long getOriginalCommitTimestamp() {
+        return originalCommitTimestamp;
+    }
+
+    public void setOriginalCommitTimestamp(long originalCommitTimestamp) {
+        this.originalCommitTimestamp = originalCommitTimestamp;
+    }
+
+    public long getTransactionLength() {
+        return transactionLength;
+    }
+
+    public void setTransactionLength(long transactionLength) {
+        this.transactionLength = transactionLength;
+    }
+
+    public int getImmidiateServerVersion() {
+        return immidiateServerVersion;
+    }
+
+    public void setImmidiateServerVersion(int immidiateServerVersion) {
+        this.immidiateServerVersion = immidiateServerVersion;
+    }
+
+    public int getOriginalServerVersion() {
+        return originalServerVersion;
+    }
+
+    public void setOriginalServerVersion(int originalServerVersion) {
+        this.originalServerVersion = originalServerVersion;
+    }
+
     @Override
     public String toString() {
         return "GtidEvent [flags=" + flags + ", sourceId="
-                + Arrays.toString(sourceId) + ", transactionId="
-                + transactionId + "]";
+                + DatatypeConverter.printHexBinary(sourceId) + ", transactionId(gno)=" + transactionId
+                + ", logicalCockTimestampTypeCode="
+                + logicalCockTimestampTypeCode + ", lastCommited="
+                + lastCommited + ", sequenceNumber=" + sequenceNumber
+                + ", immidiateCommitTimestamp=" + immidiateCommitTimestamp
+                + ", originalCommitTimestamp=" + originalCommitTimestamp
+                + ", transactionLength=" + transactionLength
+                + ", immidiateServerVersion=" + immidiateServerVersion
+                + ", originalServerVersion=" + originalServerVersion + "]";
     }
+    
+   
 }

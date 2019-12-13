@@ -29,8 +29,20 @@ public class AnonymousGtidEventDeserializer implements
     public BinlogEvent deserialize(AnonymousGtidEvent event,
             MysqlBinlogByteArrayInputStream is,
             BinlogDeserializerContext context) throws IOException {
-        
-        //TODO: implement actual event
+
+        event.setFlags(is.readInt(1, true));
+        event.setSourceId(is.read(16));
+        event.setTransactionId(is.readLong(8, true));
+        event.setLogicalCockTimestampTypeCode(is.readInt(1, true));
+        event.setLastCommited(is.readLong(8, true));
+        event.setSequenceNumber(is.readLong(8, true));
+        event.setImmidiateCommitTimestamp(is.readLong(8,  true));
+        event.setOriginalCommitTimestamp(is.readLong(8,  true));
+        event.setTransactionLength(is.readMysqlPackedNumber().longValue());
+        event.setImmidiateServerVersion(is.readInt(4, true));
+        event.setOriginalServerVersion(is.readInt(4,  true));
+        is.skip(is.available());
+
         return event;
     }
 
