@@ -16,9 +16,9 @@
 
 package com.github.mysqlbinlog.model.event;
 
-import com.github.mysqlbinlog.model.variable.StatusVariable;
-
 import java.util.List;
+
+import com.github.mysqlbinlog.model.variable.StatusVariable;
 
 /*
  * QUERY_EVENT

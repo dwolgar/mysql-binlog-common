@@ -16,12 +16,12 @@
 
 package com.github.mysql.protocol.model;
 
-import com.github.mysql.io.MysqlBinlogByteArrayOutputStream;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import javax.xml.bind.DatatypeConverter;
+
+import com.github.mysql.io.MysqlBinlogByteArrayOutputStream;
 
 public class RawMysqlPacket implements ResponsePacket {
     private static final long serialVersionUID = -8149631338389951783L;

@@ -16,9 +16,9 @@
 
 package com.github.mysqlbinlog.event.checksum;
 
-import com.github.mysql.io.MysqlBinlogByteArrayInputStream;
-
 import java.util.zip.CRC32;
+
+import com.github.mysql.io.MysqlBinlogByteArrayInputStream;
 
 public class Crc32MysqlChecksumImpl implements MysqlChecksum {
     private final CRC32 checksum = new CRC32();

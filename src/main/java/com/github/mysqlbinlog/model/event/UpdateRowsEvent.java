@@ -17,12 +17,12 @@
 package com.github.mysqlbinlog.model.event;
 
 
-import com.github.mysqlbinlog.model.event.extra.Pair;
-import com.github.mysqlbinlog.model.event.extra.Row;
-
 import java.util.Arrays;
 import java.util.BitSet;
 import java.util.List;
+
+import com.github.mysqlbinlog.model.event.extra.Pair;
+import com.github.mysqlbinlog.model.event.extra.Row;
 
 /**
  * UPDATE_ROWS_EVENT

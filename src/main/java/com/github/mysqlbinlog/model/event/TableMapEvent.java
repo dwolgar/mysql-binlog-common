@@ -17,12 +17,12 @@
 package com.github.mysqlbinlog.model.event;
 
 
-import com.github.mysqlbinlog.model.event.extra.ColumnExtraData;
-import com.github.mysqlbinlog.model.event.extra.Metadata;
-
 import java.util.Arrays;
 import java.util.BitSet;
 import java.util.List;
+
+import com.github.mysqlbinlog.model.event.extra.ColumnExtraData;
+import com.github.mysqlbinlog.model.event.extra.Metadata;
 
 /*
  * TABLE_MAP_EVENT
