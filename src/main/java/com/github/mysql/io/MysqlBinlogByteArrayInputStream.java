@@ -17,7 +17,6 @@
 package com.github.mysql.io;
 
 import java.io.ByteArrayOutputStream;
-import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.BitSet;
@@ -54,9 +53,6 @@ public class MysqlBinlogByteArrayInputStream extends InputStream {
         int offset = 0;
         while (remaining != 0) {
             int read = read(bytes, offset + length - remaining, remaining);
-            if (read == -1) {
-                throw new EOFException();
-            }
             remaining -= read;
         }
 

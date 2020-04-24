@@ -52,7 +52,7 @@ public class BinlogResponsePacketDeserializerTest {
     
     @Test
     public void mysqlOKResponsePacketDeserializerTest() throws Exception {
-        String hexPacket = "000002000000";
+        String hexPacket = "00000002000000";
         
         OKResponsePacketDeserializer unmarshaller = new OKResponsePacketDeserializer();
 
@@ -95,7 +95,7 @@ public class BinlogResponsePacketDeserializerTest {
 
     @Test
     public void mysqlEOFResponsePacketDeserializerTest() throws Exception {
-        String hexPacket = "00002200";
+        String hexPacket = "FE000022000000";// "00002200";
         
         EOFResponsePacketDeserializer unmarshaller = new EOFResponsePacketDeserializer();
 

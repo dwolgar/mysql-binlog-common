@@ -17,6 +17,8 @@
 package com.github.mysql.protocol.deserializer;
 
 
+import java.io.EOFException;
+
 import com.github.mysql.io.MysqlBinlogByteArrayInputStream;
 import com.github.mysql.protocol.model.RawMysqlPacket;
 import com.github.mysql.protocol.model.ResponsePacket;
@@ -29,13 +31,27 @@ public class RawResponsePacketDeserializer implements ResponsePacketDeserializer
         try {
             RawMysqlPacket packet = new RawMysqlPacket();
 
-            packet.setLength(is.readInt(3, true));
-            packet.setSequence(is.readInt(1, true));
+            int value = is.readInt(3, true);
+            if (value < 0) {
+            	throw new EOFException();
+            }
+            packet.setLength(value);
+            
+            value = is.readInt(1, true);
+            if (value < 0) {
+            	throw new EOFException();
+            }
+            packet.setSequence(value);
 
             int total = 0;
             final byte[] body = new byte[packet.getLength()];
             while (total < body.length) {
-                total += is.read(body, total, body.length - total);
+            	value = is.read(body, total, body.length - total);
+                if (value < 0) {
+                	throw new EOFException();
+                }
+
+                total += value;
             }
             packet.setRawBody(body);
             
